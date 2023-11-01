@@ -20,13 +20,6 @@ const Login = () => {
 
   const handleSignIn = async () => {
     try {
-
-      if (!wallet.connected || !wallet.publicKey) {
-        // You might want to display an error message or take appropriate action here.
-        console.log("Wallet is not connected or public key is missing.");
-        return;
-      }
-
       if (!wallet.connected) {
         walletModal.setVisible(true);
       }
