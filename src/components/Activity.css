@@ -8,4 +8,5 @@
   line-height: normal;
   overflow-y: scroll;
   height: 45vh;
+  scrollbar-width: none;
 }
