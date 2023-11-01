@@ -66,7 +66,7 @@ const Login = () => {
 
   useEffect(() => {
     if (wallet.publicKey) {
-        console.log(wallet.publicKey)
+        console.log(bs58.encode(wallet.publicKey.toBuffer()))
         
     }
   }, [wallet.connected])
