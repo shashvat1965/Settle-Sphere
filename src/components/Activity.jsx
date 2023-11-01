@@ -11,7 +11,7 @@ const Activity = () => {
       <ActivityItem />
       <ActivityItem />
       <ActivityItem />
-
+    
     </div>
   );
 };

@@ -1,0 +1,57 @@
+.login-container {
+  height: 100%;
+  width: 100%;
+  padding: 4rem;
+  display: flex;
+}
+.login-left,
+.login-right {
+  position: relative;
+  height: 100%;
+  width: 50%;
+}
+.login-left {
+  display: flex;
+  align-items: center;
+}
+.login-asset {
+  /* scale: 0.85; */
+  position: absolute;
+  top: 25%;
+  left: 0;
+  z-index: 2;
+}
+.heading {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.login-desc {
+  width: 70%;
+}
+.desc-heading {
+  font-family: "ZonaPro Bold";
+  color: #fff;
+  font-size: 3rem;
+  font-weight: 400;
+  line-height: 3.75rem;
+  letter-spacing: 3px;
+  margin: 2rem 0;
+}
+.desc-heading span{
+    color:  #CF41E8;
+}
+.desc-btn {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  padding: 1.5rem 8rem;
+  border-radius: 8px;
+  background: #8a2a9b;
+  color: #fff;
+  font-family: "ZonaPro Bold";
+  font-size: 1.15rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}

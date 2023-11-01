@@ -10,7 +10,8 @@ const Dashboard = () => {
     <>
     <div className="dashboard-container">
         <Sidebar />
-        <Expenses />
+        {/* <Expenses /> */}
+        <Tab />
         <Group />
     </div>
     </>
