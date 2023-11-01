@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Home.css";
 import HomeAsset from "../../public/home.svg";
 import SettleSphere from "../../public/SettleSphere.svg";
+import GlobalContext from "../context/GlobalContext";
+
 const Dashboard = () => {
+  const { dashboard, setDashboard } = useContext(GlobalContext)
+
+  const goToDashboard = () => {
+    setDashboard(true)
+    console.log(dashboard)
+  }
   return (
     <>
       <div className="home-container">
@@ -17,7 +25,7 @@ const Dashboard = () => {
               across multiple chains without any hassle, Start{" "}
               <span>settling</span> today.
             </div>
-            <button className="desc-btn">Go to Dashboard</button>
+            <button onClick={goToDashboard} className="desc-btn">Go to Dashboard</button>
           </div>
         </div>
         <div className="home-right">

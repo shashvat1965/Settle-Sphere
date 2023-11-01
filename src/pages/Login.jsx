@@ -5,8 +5,13 @@ import LoginAsset from "../../public/LoginAsset.png";
 import { useWalletModal } from "@solana/wallet-adapter-react-ui";
 import { useWallet } from "@solana/wallet-adapter-react";
 import bs58 from "bs58";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
+import GlobalContext from "../context/GlobalContext";
+
 const Login = () => {
+
+  const {isConnected, setIsConnected} = useContext(GlobalContext)
+  
   const { publicKey, connect, disconnect } = useWallet();
 
 
@@ -15,8 +20,18 @@ const Login = () => {
 
   const handleSignIn = async () => {
     try {
+
+      if (!wallet.connected || !wallet.publicKey) {
+        // You might want to display an error message or take appropriate action here.
+        console.log("Wallet is not connected or public key is missing.");
+        return;
+      }
+
       if (!wallet.connected) {
         walletModal.setVisible(true);
+      }
+      if (wallet.connected && wallet.publicKey) {
+        setIsConnected(true)
       }
 
       const csrf = await getCsrfToken();
@@ -52,6 +67,7 @@ const Login = () => {
   useEffect(() => {
     if (wallet.publicKey) {
         console.log(wallet.publicKey)
+        
     }
   }, [wallet.connected])
 
