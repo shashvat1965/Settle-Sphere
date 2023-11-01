@@ -1,5 +1,5 @@
 import React from 'react'
-import './sidebar.css'
+import './Sidebar.css'
 import SettleSphere from '../../public/SettleSphere.svg'
 import ProfilePic from '../../public/profile.png'
 
