@@ -1,0 +1,11 @@
+.activity-container {
+  margin-top: 2rem;
+  color: #767676;
+  font-family: "Open Sans";
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  overflow-y: scroll;
+  height: 45vh;
+}

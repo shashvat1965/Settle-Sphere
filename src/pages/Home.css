@@ -1,0 +1,81 @@
+.home-container {
+  height: 100%;
+  width: 100%;
+  padding: 4rem;
+  display: flex;
+}
+.home-left,
+.home-right {
+  position: relative;
+  height: 100%;
+  width: 50%;
+}
+.home-left {
+  display: flex;
+  align-items: center;
+}
+.home-asset {
+  /* scale: 0.85; */
+  position: absolute;
+  top: -8rem;
+  right: -6rem;
+  z-index: 2;
+}
+@media(max-height: 850px) and (max-width: 1350px){
+    .home-asset{
+        scale: .8;
+        right: -10rem;
+    }
+}
+@media(max-height: 750px){
+    .home-asset{
+        /* scale: .75; */
+        top: -12rem;
+        right: -15rem;
+    }
+}
+
+.heading {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.home-desc {
+  width: 80%;
+}
+.desc-heading {
+  font-family: "ZonaPro Bold";
+  color: #fff;
+  font-size: 3rem;
+  font-weight: 400;
+  line-height: 3.75rem;
+  letter-spacing: 1.5px;
+  margin: 2rem 0;
+}
+.desc-para {
+  width: 95%;
+  color: #fff;
+  font-family: "ZonaPro";
+  font-size: 1.15rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-bottom: 4rem;
+}
+.desc-para span {
+  color: #cf41e8;
+}
+.desc-btn {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  padding: 1rem 3rem;
+  border-radius: 8px;
+  background: #8a2a9b;
+  color: #fff;
+  font-family: "ZonaPro Bold";
+  font-size: 1.15rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}

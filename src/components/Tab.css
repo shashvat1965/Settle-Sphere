@@ -1,0 +1,87 @@
+.tab {
+  height: 100vh;
+  border-right: 2px solid #858585;
+  padding: 4rem 3rem 1rem 3rem;
+}
+.tab-header {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem 1rem;
+  border-bottom: 2px solid #858585;
+}
+.tab-profile-picture {
+  border: 4px solid #181a2a;
+  border-radius: 8px;
+}
+.tab-profile-data {
+  margin-top: 0.5rem;
+  height: 100px;
+  color: #fff;
+  font-family: "Open Sans";
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.tab-heading {
+  color: #fff;
+  font-family: "ZonaPro Bold";
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.tab-created {
+  margin-top: 1rem;
+}
+.tab-last-bill {
+  margin-top: 0.5rem;
+}
+.tab-created span,
+.tab-last-bill span {
+  color: #98d448;
+  font-family: "ZonaPro Bold";
+}
+.tab-group-owed {
+  margin-top: 1rem;
+  color: #fff;
+  font-family: "ZonaPro Bold";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  display: flex;
+  align-items: center;
+}
+.tab-group-owed span {
+  padding: 0 0.5rem;
+}
+.tab-buttons {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+.tab-button-item {
+  cursor: pointer;
+  width: 33.33333333333%;
+  border-radius: 8px;
+  border: 1px solid #d9d9d9;
+  box-shadow: 0px 1px 4px 0px rgba(237, 237, 237, 0.25);
+  color: #fff;
+  font-family: "Open Sans";
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 1.5rem;
+}
+.selected-button {
+  border-radius: 8px;
+  background: #8a2a9b;
+  box-shadow: 0px 2px 4px 0px rgba(217, 217, 217, 0.25);
+  border: #8a2a9b;
+}

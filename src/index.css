@@ -1,0 +1,27 @@
+@font-face {
+  font-family: "ZonaPro Bold";
+  src: url('../public/fonts/ZonaPro-Bold.otf');
+}
+@font-face {
+  font-family: "ZonaPro";
+  src: url('../public/fonts/ZonaPro-Thin.otf');
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url('../public/fonts/Satoshi-Regular.otf');
+}
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body{
+  background: #0C0C0C;
+  height: 100dvh;
+  width: 100vw;
+  overflow: hidden;
+}
+#root{
+  height: 100%;
+  width: 100%;
+}

@@ -1,0 +1,67 @@
+.activity-item {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+}
+.activity-item-month {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.activity-icon {
+  margin: 1rem;
+}
+.activity-details {
+  flex-grow: 1;
+}
+.activity-title {
+  color: #e0e0e0;
+  font-family: "Open Sans";
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.activity-data {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+}
+.activity-data-currency {
+  scale: 0.75;
+  margin-bottom: -0.25rem;
+}
+.activity-data-amount {
+  margin-bottom: 0.25rem;
+  color: #e0e0e0;
+  font-family: "Open Sans";
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.activity-type {
+  flex: 1;
+}
+.activity-type span {
+  color: #ab640e;
+  font-family: "Open Sans";
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.activity-type-data {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.activity-type-data span {
+  color: #fff;
+  font-family: "ZonaPro";
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 2rem;
+}

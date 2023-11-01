@@ -1,0 +1,51 @@
+.group-box {
+  margin-top: 2rem;
+  border-radius: 20px;
+  background: linear-gradient(
+    270deg,
+    #62336a 0.41%,
+    rgba(80, 63, 83, 0) 115.91%
+  );
+  display: flex;
+  gap: 1rem;
+  padding: 2rem 1rem;
+}
+.box-data {
+  color: #fff;
+  font-family: "Open Sans";
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.box-heading {
+  color: #fff;
+  font-family: "ZonaPro Bold";
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.created,
+.last-bill {
+  margin-top: 0.5rem;
+}
+.created span,
+.last-bill span {
+  color: #98d448;
+  font-family: "ZonaPro Bold";
+}
+.group-owed {
+  margin-top: 1rem;
+  color: #fff;
+  font-family: "ZonaPro Bold";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  display: flex;
+  align-items: center;
+}
+.group-owed span {
+  padding: 0 0.5rem;
+}

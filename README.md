@@ -1,1 +1,3 @@
-# Settle-Sphere
+# Settle Sphere
+
+Frontend for Settle Sphere

@@ -1,0 +1,83 @@
+.sidebar {
+    position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-right: 1px solid #253043;
+  padding: 2rem 0;
+  height: 100vh;
+}
+.sidebar-heading {
+  scale: 0.9;
+  margin-top: 2rem;
+}
+.profile-pic {
+  margin-top: 4rem;
+}
+.profile-name {
+  margin-top: 1rem;
+  color: #f1f1f1;
+  font-family: "ZonaPro";
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.sidebar-tabs {
+  margin-top: 4rem;
+  width: 100%;
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar-tabs li {
+  position: relative;
+  padding: 0 2.5rem;
+  color: #fff;
+  line-height: 2.5rem;
+  cursor: pointer;
+}
+.selected-tab{
+    border-right: 2px solid #98d448;
+}
+.selected-tab::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    background: linear-gradient(
+      90deg,
+      #98d448 0%,
+      rgba(152, 212, 72, 0.43) 27.39%,
+      rgba(152, 212, 72, 0.18) 49.42%,
+      rgba(152, 212, 72, 0) 78.57%,
+      rgba(152, 212, 72, 0) 110.61%,
+      rgba(152, 212, 72, 0) 111.9%
+    );
+    z-index: -1;
+  
+}
+.sidebar-tabs li span {
+  font-family: "Satoshi";
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  background-color: transparent;
+}
+.logout-btn {
+    position: absolute;
+    bottom: 4rem;
+    width: 70%;
+  color: #fff;
+  font-family:"ZonaPro Bold";
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.logout-btn span{
+    cursor: pointer;
+}

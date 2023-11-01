@@ -1,0 +1,43 @@
+.group {
+  padding: 4rem 3rem 1rem 3rem;
+  height: 100vh;
+}
+.group-heading {
+  color: #fff;
+  font-family: "ZonaPro Bold";
+  font-size: 2.25rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.search-box {
+  border-radius: 12px;
+  background-color: #424242;
+  margin-top: 2rem;
+  padding: 1.25rem 1.5rem;
+}
+input[type="text"] {
+  width: 100%;
+  /* padding: 10px; */
+  border: none;
+  outline: none;
+  font-size: 1.25rem;
+  font-family: "ZonaPro Bold";
+  background-color: #424242;
+  color: #fff; 
+}
+::placeholder {
+    color: #8B8B8B;
+    opacity: 1; 
+    font-size: 1rem;
+  }
+  
+  ::-ms-input-placeholder { 
+    color: #8B8B8B;
+    font-size: 1rem;
+  }
+.group-box-container{
+    margin-top: 1rem;
+    height: 70vh;
+    overflow-y: scroll;
+}

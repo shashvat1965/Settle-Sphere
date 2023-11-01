@@ -1,0 +1,181 @@
+.expenses {
+  border-right: 2px solid #858585;
+  padding: 4rem 3rem 1rem 3rem;
+  height: 100vh;
+}
+.expenses-header {
+  display: flex;
+  justify-content: space-between;
+}
+.expenses-header span {
+  color: #fff;
+  font-family: "ZonaPro Bold";
+  font-size: 2.25rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.expenses-data {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.expenses-asset {
+  margin-top: 4rem;
+  position: relative;
+  width: 100px; /* Adjust the width and height as needed */
+  height: 100px;
+  scale: .7;
+}
+
+.purple,
+.green,
+.circle,
+.data {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.purple {
+  animation: rotate 10s linear infinite;
+}
+
+.green {
+  animation: rotateReverse 10s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes rotateReverse {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(-360deg);
+  }
+}
+
+.data,
+.got-data,
+.spent-data {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.data span,
+.got-data span,
+.spent-data span {
+  color: #fff;
+  font-family: "ZonaPro Bold";
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.5rem;
+}
+.expenses-balance {
+  margin-top: 5rem;
+  display: flex;
+  justify-content: space-between;
+}
+.got-back {
+  display: flex;
+  border-radius: 12px;
+  background: #151b28;
+  box-shadow: 4px 8px 24px 0px rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 2rem;
+}
+.owned {
+  display: flex;
+  border-radius: 12px;
+  border: 1px solid #282d39;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1.5rem;
+}
+.got-arrow {
+  margin-top: -1rem;
+  height: 60px;
+  width: 60px;
+  border: 2px solid #138c40;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.owned-arrow {
+  border: 2px solid #cf41e8;
+}
+.got-data {
+  margin-top: 0.5rem;
+}
+.got-data-section {
+  margin-top: 1rem;
+}
+.got-data-section span {
+  color: #fff;
+  font-family: "ZonaPro";
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.5rem;
+}
+.transaction {
+  margin-top: 2rem;
+}
+.transaction-heading {
+  color: #fff;
+  font-family: "ZonaPro Bold";
+  font-size: 1.75rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.spendings {
+    margin-top: 1rem;
+  list-style-type: none;
+  color: #fff;
+  font-family: "Satoshi";
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  height: 250px;
+  overflow-y: scroll;
+}
+.spent-details {
+  display: flex;
+  align-items: center;
+  margin-top: 2rem;
+}
+.group-name{
+    flex-grow: 1;
+    margin-left: 2.5rem;
+}
+.spent-data{
+    flex: 1;
+}
+@media (max-width: 1300px){
+    .expenses-data{
+        margin-top: 2rem;
+    }
+    .got-back{
+        padding: .5rem 1.5rem;
+    }
+    .got-data-section span{
+        font-size: 1rem;
+    }
+}
