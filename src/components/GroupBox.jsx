@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./GroupBox.css";
 import Profile from "../../public/profile.png";
 import Solana from '../../public/Solana.svg'
+import GlobalContext from "../context/GlobalContext";
 
 const GroupBox = () => {
+  const {setGroup} = useContext(GlobalContext)
+  const handleGroup = () => {
+    setGroup(true)
+  }
   return (
-    <div className="group-box">
+    <div onClick={handleGroup} className="group-box">
       <div className="box-picture">
         <img src={Profile} alt="" />
       </div>
