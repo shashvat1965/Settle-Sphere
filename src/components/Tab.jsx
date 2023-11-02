@@ -3,6 +3,7 @@ import "./Tab.css";
 import Profile from "../../public/GroupPicture.png";
 import Solana from '../../public/Solana.svg'
 import Activity from "./Activity";
+import Total from "./Total";
 
 const Tab = () => {
   return (
@@ -26,11 +27,12 @@ const Tab = () => {
         </div>
       </div>
       <div className="tab-buttons">
-        <div className="tab-button-item selected-button">Activity</div>
-        <div className="tab-button-item">Totals</div>
+        <div className="tab-button-item ">Activity</div>
+        <div className="tab-button-item selected-button">Totals</div>
         <div className="tab-button-item">Settle Up</div>
       </div>
-      <Activity />
+      {/* <Activity /> */}
+      <Total />
     </div>
   );
 };

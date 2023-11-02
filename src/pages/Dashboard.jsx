@@ -11,8 +11,8 @@ const Dashboard = () => {
     <>
     <div className="dashboard-container">
         <Sidebar />
-        {/* <Expenses /> */}
-        <Tab />
+        <Expenses />
+        {/* <Tab /> */}
         <Group />
     </div>
     </>

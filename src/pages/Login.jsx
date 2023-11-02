@@ -9,11 +9,10 @@ import { useEffect, useContext } from "react";
 import GlobalContext from "../context/GlobalContext";
 
 const Login = () => {
+  const { isConnected, setIsConnected, setDashboard } =
+    useContext(GlobalContext);
 
-  const {isConnected, setIsConnected} = useContext(GlobalContext)
-  
   const { publicKey, connect, disconnect } = useWallet();
-
 
   const wallet = useWallet();
   const walletModal = useWalletModal();
@@ -23,10 +22,6 @@ const Login = () => {
       if (!wallet.connected) {
         walletModal.setVisible(true);
       }
-      if (wallet.connected && wallet.publicKey) {
-        setIsConnected(true)
-      }
-
       const csrf = await getCsrfToken();
       if (!wallet.publicKey || !csrf || !wallet.signMessage) return;
 
@@ -58,12 +53,14 @@ const Login = () => {
   }, [wallet.connected]);
 
   useEffect(() => {
-    if (wallet.publicKey) {
-        console.log(bs58.encode(wallet.publicKey.toBuffer()))
-        
+    if (wallet.connected && wallet.publicKey) {
+      console.log(bs58.encode(wallet.publicKey.toBuffer()));
+      if (!wallet.disconnecting) {
+        setIsConnected(true);
+        setDashboard(true);
+      }
     }
-  }, [wallet.connected])
-
+  }, [wallet.connected]);
 
   return (
     <>
@@ -76,7 +73,9 @@ const Login = () => {
             <div className="desc-heading">
               Connect Your <span>Wallet</span> to get Started
             </div>
-            <button onClick={handleSignIn} className="desc-btn">Login Through Wallet</button>
+            <button onClick={handleSignIn} className="desc-btn">
+              Login Through Wallet
+            </button>
           </div>
         </div>
         <div className="login-right">
