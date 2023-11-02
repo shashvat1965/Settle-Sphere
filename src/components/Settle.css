@@ -1,0 +1,19 @@
+.settle{
+    margin-top: 2rem;
+}
+.settle-heading {
+  color: #fff;
+  font-family: "Open Sans";
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  display: flex;
+  align-items: center;
+}
+.settle-heading img{
+    cursor: pointer;
+}
+.settle-heading span{
+    margin-left: 1.5rem;
+}

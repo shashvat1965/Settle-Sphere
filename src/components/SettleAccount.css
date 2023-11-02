@@ -1,0 +1,44 @@
+.settle-account {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  color: #fff;
+  font-family: "Satoshi";
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  cursor: pointer;
+}
+.settle-profile {
+  display: flex;
+  align-items: center;
+}
+.settle-name {
+  flex-grow: 1;
+  margin-left: 2.5rem;
+}
+.settle-record {
+  flex: 1;
+  color: #619c12;
+  text-align: right;
+  font-family: "Open Sans";
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.settle-data {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.settle-data img{
+    scale: .75;
+}
+.settle-data span {
+    color: #fff;
+    /* font-size: 1rem; */
+}

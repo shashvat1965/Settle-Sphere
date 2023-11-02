@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./Tab.css";
 import Profile from "../../public/GroupPicture.png";
 import Solana from "../../public/Solana.svg";
 import Activity from "./Activity";
 import Total from "./Total";
+import Settle from "./Settle";
+import GlobalContext from "../context/GlobalContext";
+import Record from "./Record";
 
 const Tab = () => {
-  const [selectedTab, setSelectedTab] = useState("activity");
+  const { selectedTab, setSelectedTab } = useContext(GlobalContext);
 
   const handleTabClick = (tab) => {
     setSelectedTab(tab);
@@ -34,10 +37,10 @@ const Tab = () => {
       </div>
       <div className="tab-buttons">
         <div
-          className={`tab-button-item ${selectedTab === "activity" ? "selected-button" : ""}`}
+          className={`tab-button-item ${selectedTab === "activity" || selectedTab === "settle" || selectedTab === "record" ? "selected-button" : ""}`}
           onClick={() => handleTabClick("activity")}
         >
-          Activity
+          Settle Up
         </div>
         <div
           className={`tab-button-item ${selectedTab === "totals" ? "selected-button" : ""}`}
@@ -55,6 +58,7 @@ const Tab = () => {
       {selectedTab === "activity" && <Activity />}
       {selectedTab === "totals" && <Total />}
       {selectedTab === "settle" && <Settle />}
+      {selectedTab === "record" && <Record />}
     </div>
   );
 };

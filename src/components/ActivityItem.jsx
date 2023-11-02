@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import './ActivityItem.css'
 import ActivityIcon from "../../public/Activity.png";
 import Solana from "../../public/Solana.svg";
+import GlobalContext from "../context/GlobalContext";
 
 
 const ActivityItem = () => {
+
+  const { setSelectedTab } = useContext(GlobalContext)
+
+  const handleActivity = () => {
+    setSelectedTab("settle")
+  }
+
   return (
-    <div className="activity-item">
+    <div className="activity-item" onClick={handleActivity}>
       <div className="activity-item-month">
         <div className="month">Oct</div>
         <div className="year">23</div>

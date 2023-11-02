@@ -7,6 +7,8 @@ const GlobalContext = React.createContext({
     setDashboard: () => {},
     group: false,
     setGroup: () => {},
+    selectedTab: "activity",
+    setSelectedTab: () => {},
 });
 
 export default GlobalContext

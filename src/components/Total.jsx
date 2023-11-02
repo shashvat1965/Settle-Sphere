@@ -1,6 +1,7 @@
 import React from "react";
 import "./Total.css";
 import Solana from "../../public/Solana.svg";
+import DownArrow from "../../public/down-arrow.svg"
 
 const Total = () => {
   return (

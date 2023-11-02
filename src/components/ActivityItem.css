@@ -2,11 +2,13 @@
   margin-top: 1rem;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 .activity-item-month {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: -1rem;
 }
 .activity-icon {
   margin: 1rem;
@@ -30,7 +32,6 @@
 }
 .activity-data-currency {
   scale: 0.75;
-  margin-bottom: -0.25rem;
 }
 .activity-data-amount {
   margin-bottom: 0.25rem;
