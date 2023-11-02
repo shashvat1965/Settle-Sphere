@@ -9,6 +9,7 @@
   display: flex;
   gap: 1rem;
   padding: 2rem 1rem;
+  cursor: pointer;
 }
 .box-data {
   color: #fff;

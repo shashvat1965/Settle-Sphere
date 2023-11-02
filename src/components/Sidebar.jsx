@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef, useState } from "react";
 import "./Sidebar.css";
 import SettleSphere from "../../public/SettleSphere.svg";
 import ProfilePic from "../../public/profile.png";
@@ -9,11 +9,31 @@ import { WalletDisconnectButton } from "@solana/wallet-adapter-react-ui";
 const Sidebar = () => {
   const { disconnect } = useWallet();
 
-  const { setIsConnected } = useContext(GlobalContext);
+  const { setIsConnected, setGroup } = useContext(GlobalContext);
+  const homeRef = useRef(null);
+  const groupRef = useRef(null);
+
+  const [selectedTab, setSelectedTab] = useState("home");
+
   const handleSignOut = () => {
     setIsConnected(false);
     disconnect();
   };
+
+  const handleTabClick = (tab) => {
+    setSelectedTab(tab);
+  };
+
+  const handleHome = () => {
+    setGroup(false);
+    handleTabClick("home"); 
+  };
+
+  const handleGroup = () => {
+    setGroup(true);
+    handleTabClick("group"); 
+  };
+
   return (
     <div className="sidebar">
       <div className="sidebar-heading">
@@ -24,10 +44,18 @@ const Sidebar = () => {
       </div>
       <div className="profile-name">Shivang Rai</div>
       <ul className="sidebar-tabs">
-        <li className="selected-tab">
+        <li
+          onClick={handleHome}
+          ref={homeRef}
+          className={selectedTab === "home" ? "selected-tab" : ""}
+        >
           <span>Home</span>
         </li>
-        <li>
+        <li
+          onClick={handleGroup}
+          ref={groupRef}
+          className={selectedTab === "group" ? "selected-tab" : ""}
+        >
           <span>Group</span>
         </li>
       </ul>

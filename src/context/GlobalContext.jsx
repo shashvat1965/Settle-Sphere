@@ -5,6 +5,8 @@ const GlobalContext = React.createContext({
     setIsConnected: () => {},
     dashboard: false,
     setDashboard: () => {},
+    group: false,
+    setGroup: () => {},
 });
 
 export default GlobalContext

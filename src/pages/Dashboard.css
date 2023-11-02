@@ -3,4 +3,5 @@
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 4fr 3fr;
+    background: url(../../public/dashboard-bg.png);
 }

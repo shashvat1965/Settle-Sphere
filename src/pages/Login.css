@@ -3,6 +3,7 @@
   width: 100%;
   padding: 4rem;
   display: flex;
+  background: url(../../public/login-bg.png);
 }
 .login-left,
 .login-right {
