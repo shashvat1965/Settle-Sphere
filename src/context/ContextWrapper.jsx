@@ -6,6 +6,7 @@ export default function ContextWrapper(props) {
     const [dashboard, setDashboard] = useState(false)
     const [group, setGroup] = useState(false)
     const [selectedTab, setSelectedTab] = useState("activity");
+    const [token, setToken] = useState("");
 
     return (
         <GlobalContext.Provider
@@ -17,7 +18,9 @@ export default function ContextWrapper(props) {
             group,
             setGroup,
             selectedTab,
-            setSelectedTab
+            setSelectedTab,
+            token,
+            setToken,
         }}
       >
         {props.children}

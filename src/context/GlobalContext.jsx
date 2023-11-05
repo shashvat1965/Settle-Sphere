@@ -9,6 +9,8 @@ const GlobalContext = React.createContext({
     setGroup: () => {},
     selectedTab: "activity",
     setSelectedTab: () => {},
+    token: "",
+    setToken: () => {},
 });
 
 export default GlobalContext

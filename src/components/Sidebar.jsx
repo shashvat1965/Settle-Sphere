@@ -13,6 +13,7 @@ const Sidebar = () => {
   const handleSignOut = () => {
     setIsConnected(false);
     disconnect();
+    localStorage.removeItem("pubKey");
   };
 
 

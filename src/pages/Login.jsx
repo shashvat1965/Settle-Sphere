@@ -9,10 +9,8 @@ import { useEffect, useContext } from "react";
 import GlobalContext from "../context/GlobalContext";
 
 const Login = () => {
-  const { isConnected, setIsConnected, setDashboard } =
+  const { setIsConnected, setDashboard, setToken } =
     useContext(GlobalContext);
-
-  const { publicKey, connect, disconnect } = useWallet();
 
   const wallet = useWallet();
   const walletModal = useWalletModal();
@@ -54,10 +52,36 @@ const Login = () => {
 
   useEffect(() => {
     if (wallet.connected && wallet.publicKey) {
-      console.log(bs58.encode(wallet.publicKey.toBuffer()));
       if (!wallet.disconnecting) {
         setIsConnected(true);
         setDashboard(true);
+        localStorage.setItem(
+          "pubKey",
+          bs58.encode(wallet.publicKey.toBuffer())
+        );
+        async function connectToWallet() {
+          try {
+            const res = await fetch("http://localhost:3000/api/v1/auth/login", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                email: "abc@gmail.com",
+                pubKey: bs58.encode(wallet.publicKey.toBuffer()),
+              }),
+            });
+
+            const data = await res.json();
+            console.log(data.message);
+            setToken(data.token)
+
+          } catch (error) {
+            console.error("Error:", error.message);
+          }
+        }
+
+        connectToWallet();
       }
     }
   }, [wallet.connected]);
