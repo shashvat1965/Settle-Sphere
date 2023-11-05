@@ -7,6 +7,8 @@ export default function ContextWrapper(props) {
     const [group, setGroup] = useState(false)
     const [selectedTab, setSelectedTab] = useState("activity");
     const [token, setToken] = useState("");
+    const [create, setCreate] = useState(false)
+    const [join, setJoin] = useState(false)
 
     return (
         <GlobalContext.Provider
@@ -21,6 +23,10 @@ export default function ContextWrapper(props) {
             setSelectedTab,
             token,
             setToken,
+            create,
+            setCreate,
+            join,
+            setJoin
         }}
       >
         {props.children}

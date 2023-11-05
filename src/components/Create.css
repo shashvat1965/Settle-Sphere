@@ -1,0 +1,64 @@
+.create-group {
+  height: 100%;
+  width: 35vw;
+  background: rgba(14,15,25,.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+}
+.create-container {
+  height: 25vh;
+  width: 50vh;
+  border-radius: 20px;
+  background: rgba(98, 51, 106, 1);
+}
+.create-inputs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+.create-photo-text {
+  display: none;
+  color: #fff;
+  font-family: "ZonaPro";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.create-name {
+  width: 50%;
+}
+.create-name input[type="text"] {
+  background-color: transparent;
+  border-bottom: 1px solid #f5f2f5;
+  text-align: center;
+  padding: 0.5rem;
+}
+.create-name input::placeholder {
+  font-size: 1.25rem;
+}
+.create-group-btn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.create-group-btn button{
+    margin-top: 1rem;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  border-radius: 8px;
+  background: #8A2A9B;
+  box-shadow: 0px 2px 4px 0px rgba(217, 217, 217, 0.25);  color: #fff;
+  font-family: "ZonaPro Bold";
+  font-size: 1.15rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding: 1rem 2rem;
+}

@@ -1,6 +1,10 @@
 .group {
-  padding: 4rem 3rem 1rem 3rem;
   height: 100vh;
+  width: 100%;
+}
+.group-container{
+  height: 100%;
+  padding: 4rem 3rem 2rem 3rem;
 }
 .group-heading {
   color: #fff;
@@ -24,21 +28,48 @@ input[type="text"] {
   font-size: 1.25rem;
   font-family: "ZonaPro Bold";
   background-color: #424242;
-  color: #fff; 
+  color: #fff;
 }
 ::placeholder {
-    color: #8B8B8B;
-    opacity: 1; 
-    font-size: 1rem;
-  }
-  
-  ::-ms-input-placeholder { 
-    color: #8B8B8B;
-    font-size: 1rem;
-  }
-.group-box-container{
-    margin-top: 1rem;
-    height: 70vh;
-    overflow-y: scroll;
-    scrollbar-width: none;
+  color: #8b8b8b;
+  opacity: 1;
+  font-size: 1rem;
+}
+
+::-ms-input-placeholder {
+  color: #8b8b8b;
+  font-size: 1rem;
+}
+.group-box-container {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  height: 60vh;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+.create-join-container{
+  /* margin-top: 2rem; */
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  align-items: center;
+}
+.create-join-container button {
+  width: 50%;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(
+    270deg,
+    #62336a 0.41%,
+    rgba(80, 63, 83, 0) 115.91%
+  );
+  color: #fff;
+  font-family: "ZonaPro Bold";
+  font-size: 1.15rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding: 1.25rem 1.5rem;
 }

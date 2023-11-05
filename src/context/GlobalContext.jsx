@@ -11,6 +11,10 @@ const GlobalContext = React.createContext({
     setSelectedTab: () => {},
     token: "",
     setToken: () => {},
+    create: false,
+    setCreate: () => {},
+    join: false,
+    setJoin: () => {},
 });
 
 export default GlobalContext
