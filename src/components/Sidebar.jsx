@@ -31,7 +31,7 @@ const Sidebar = () => {
         <img src={SettleSphere} alt="" />
       </div>
       <div className="profile-pic">
-        <img src={ProfilePic} alt="" />
+        <img src={ProfilePic} alt="" draggable={false} loading="lazy" />
       </div>
       <div className="profile-name">Shivang Rai</div>
       <ul className="sidebar-tabs">

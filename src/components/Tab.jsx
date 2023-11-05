@@ -19,7 +19,7 @@ const Tab = () => {
     <div className="tab">
       <div className="tab-header">
         <div className="tab-profile-picture">
-          <img src={Profile} alt="" />
+          <img src={Profile} alt="" draggable={false} loading="lazy" />
         </div>
         <div className="tab-profile-data">
           <div className="tab-heading">Very Long Group Name 2</div>
