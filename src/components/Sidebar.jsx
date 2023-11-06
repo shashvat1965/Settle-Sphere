@@ -8,14 +8,13 @@ import GlobalContext from "../context/GlobalContext";
 const Sidebar = () => {
   const { disconnect } = useWallet();
 
-  const { setIsConnected, setGroup, group } = useContext(GlobalContext);
+  const { setIsConnected, setGroup, group, groups } = useContext(GlobalContext);
 
   const handleSignOut = () => {
     setIsConnected(false);
     disconnect();
     localStorage.removeItem("pubKey");
   };
-
 
   const handleHome = () => {
     setGroup(false);
@@ -35,18 +34,16 @@ const Sidebar = () => {
       </div>
       <div className="profile-name">Shivang Rai</div>
       <ul className="sidebar-tabs">
-        <li
-          onClick={handleHome}
-          className={group ? "" : "selected-tab"}
-        >
+        <li onClick={handleHome} className={group ? "" : "selected-tab"}>
           <span>Home</span>
         </li>
-        <li
-          onClick={handleGroup}
-          className={!group ? "" : "selected-tab"}
-        >
-          <span>Group</span>
-        </li>
+        {groups.length > 0 ? (
+          <li onClick={handleGroup} className={!group ? "" : "selected-tab"}>
+            <span>Group</span>
+          </li>
+        ) : (
+          ""
+        )}
       </ul>
       <div className="logout-btn">
         <span onClick={handleSignOut}>Log Out</span>

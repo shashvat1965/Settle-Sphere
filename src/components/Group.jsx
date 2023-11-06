@@ -27,8 +27,10 @@ const Group = () => {
         console.error("Error:", error.message);
       }
     }
-    getGroups();
-  }, [token]);
+    setTimeout(() => {
+      getGroups();
+    }, 500);
+  }, [token, create, join]);
 
   const handleCreate = () => {
     setCreate(true);
@@ -56,17 +58,19 @@ const Group = () => {
         </div>
         <div className="group-box-container">
           {groups
-            .filter((grp) =>
-              grp.name.toLowerCase().includes(searchQuery.toLowerCase())
-            )
-            .map((grp) => (
-              <GroupBox
-                key={grp.id}
-                groupName={grp.name}
-                groupCode={grp.code}
-                createdBy={grp.created_by}
-              />
-            ))}
+            ? groups
+                .filter((grp) =>
+                  grp.name.toLowerCase().includes(searchQuery.toLowerCase())
+                )
+                .map((grp) => (
+                  <GroupBox
+                    key={grp.id}
+                    groupName={grp.name}
+                    groupCode={grp.code}
+                    createdBy={grp.created_by}
+                  />
+                ))
+            : ""}
         </div>{" "}
         <div className="create-join-container">
           <button onClick={handleCreate} className="create">

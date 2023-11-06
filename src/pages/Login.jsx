@@ -67,7 +67,7 @@ const Login = () => {
                 "Content-Type": "application/json",
               },
               body: JSON.stringify({
-                email: "abc@gmail.com",
+                email: "Paaji@gmail.com",
                 pubKey: bs58.encode(wallet.publicKey.toBuffer()),
               }),
             });
