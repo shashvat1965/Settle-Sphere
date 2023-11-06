@@ -3,7 +3,7 @@ import React from "react";
 const GlobalContext = React.createContext({
     isConnected: false,
     setIsConnected: () => {},
-    dashboard: false,
+    dashboard: true,
     setDashboard: () => {},
     group: false,
     setGroup: () => {},
@@ -15,6 +15,10 @@ const GlobalContext = React.createContext({
     setCreate: () => {},
     join: false,
     setJoin: () => {},
+    groups: [],
+    setGroups: () => {},
+    activeGroup: "",
+    setActiveGroup: () => {},
 });
 
 export default GlobalContext

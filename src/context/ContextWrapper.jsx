@@ -3,12 +3,14 @@ import GlobalContext from "./GlobalContext";
 
 export default function ContextWrapper(props) {
     const [isConnected, setIsConnected] = useState(false)
-    const [dashboard, setDashboard] = useState(false)
+    const [dashboard, setDashboard] = useState(true)
     const [group, setGroup] = useState(false)
     const [selectedTab, setSelectedTab] = useState("activity");
     const [token, setToken] = useState("");
     const [create, setCreate] = useState(false)
     const [join, setJoin] = useState(false)
+    const [groups, setGroups] = useState([]);
+    const [activeGroup, setActiveGroup] = useState("")
 
     return (
         <GlobalContext.Provider
@@ -26,7 +28,11 @@ export default function ContextWrapper(props) {
             create,
             setCreate,
             join,
-            setJoin
+            setJoin,
+            groups,
+            setGroups,
+            activeGroup, 
+            setActiveGroup,
         }}
       >
         {props.children}

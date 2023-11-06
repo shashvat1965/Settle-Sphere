@@ -4,10 +4,11 @@ import Profile from "../../public/profile.png";
 import Solana from '../../public/Solana.svg'
 import GlobalContext from "../context/GlobalContext";
 
-const GroupBox = () => {
-  const {setGroup} = useContext(GlobalContext)
+const GroupBox = ({groupName, groupCode, createdBy}) => {
+  const {setGroup, setActiveGroup} = useContext(GlobalContext)
   const handleGroup = () => {
     setGroup(true)
+    setActiveGroup(groupCode)
   }
   return (
     <div onClick={handleGroup} className="group-box">
@@ -15,9 +16,9 @@ const GroupBox = () => {
         <img src={Profile} alt="" />
       </div>
       <div className="box-data">
-        <div className="box-heading">Very Long Group Name 2</div>
+        <div className="box-heading">{groupName}</div>
         <div className="created">
-          Created By <span>Shivang Rai</span>
+          Created By <span>{createdBy}</span>
         </div>
         <div className="last-bill">
           Last Bill Paid by <span>Shivang Rai</span>
