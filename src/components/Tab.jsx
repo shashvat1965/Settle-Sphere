@@ -11,10 +11,13 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import Copy from "../../public/copy.png";
 
 const Tab = () => {
-  const { selectedTab, setSelectedTab, groups, activeGroup } =
+  const { selectedTab, setSelectedTab, groups, activeGroup, setActiveGroup } =
     useContext(GlobalContext);
-
-  const currentGroup = activeGroup ? groups.find((group) => group.code === activeGroup) : groups[0] ;
+    if (!activeGroup.length > 0) {
+      setActiveGroup(groups[0].code)
+    }
+    
+  const currentGroup = groups.find((group) => group.code === activeGroup);
 
   function formatDateToCustomString(date) {
     const options = { month: "short" };

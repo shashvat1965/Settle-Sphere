@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Login.css";
 import SettleSphere from "../../public/SettleSphere.svg";
 import LoginAsset from "../../public/LoginAsset.png";
@@ -9,8 +9,8 @@ import { useEffect, useContext } from "react";
 import GlobalContext from "../context/GlobalContext";
 
 const Login = () => {
-  const { setIsConnected, setDashboard, setToken } =
-    useContext(GlobalContext);
+  const { setIsConnected, setDashboard, setToken } = useContext(GlobalContext);
+  const [username, setUsername] = useState("");
 
   const wallet = useWallet();
   const walletModal = useWalletModal();
@@ -67,15 +67,14 @@ const Login = () => {
                 "Content-Type": "application/json",
               },
               body: JSON.stringify({
-                email: "Paaji@gmail.com",
+                email: `TestUser@gmail.com`,
                 pubKey: bs58.encode(wallet.publicKey.toBuffer()),
               }),
             });
 
             const data = await res.json();
             console.log(data.message);
-            setToken(data.token)
-
+            setToken(data.token);
           } catch (error) {
             console.error("Error:", error.message);
           }
@@ -85,6 +84,13 @@ const Login = () => {
       }
     }
   }, [wallet.connected]);
+
+  const handleUsername = (e) => {
+    setUsername(e.target.value);
+  };
+  const handleEmptyUsername = () =>{
+    alert("Please Enter a Username!")
+  }
 
   return (
     <>
@@ -97,7 +103,14 @@ const Login = () => {
             <div className="desc-heading">
               Connect Your <span>Wallet</span> to get Started
             </div>
-            <button onClick={handleSignIn} className="desc-btn">
+            {/* <input
+              className="login-username"
+              type="text"
+              placeholder="Enter a Username"
+              value={username}
+              onChange={handleUsername}
+            /> */}
+            <button onClick={ handleSignIn } className="desc-btn">
               Login Through Wallet
             </button>
           </div>

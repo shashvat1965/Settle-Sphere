@@ -8,12 +8,12 @@ import GlobalContext from '../context/GlobalContext'
 
 
 const Dashboard = () => {
-  const { group } = useContext(GlobalContext)
+  const { group, groups } = useContext(GlobalContext)
   return (
     <>
     <div className="dashboard-container">
         <Sidebar />
-        {group ? (<Tab />) : (<Expenses />)}
+        {groups.length > 0 ? group ? (<Tab />) : (<Expenses />) : (<Expenses />)}
         <Group />
     </div>
     </>

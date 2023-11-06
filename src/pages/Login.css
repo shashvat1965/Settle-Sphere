@@ -30,6 +30,12 @@
 .login-desc {
   width: 70%;
 }
+.login-desc input[type="text"]{
+  background-color: transparent;
+  border-bottom: 1px solid #f5f2f5;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
 .desc-heading {
   font-family: "ZonaPro Bold";
   color: #fff;

@@ -19,6 +19,8 @@ const GlobalContext = React.createContext({
     setGroups: () => {},
     activeGroup: "",
     setActiveGroup: () => {},
+    users: "",
+    setUsers: () => {},
 });
 
 export default GlobalContext

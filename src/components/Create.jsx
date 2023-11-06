@@ -13,11 +13,11 @@ const Create = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
-          name: createName
-        })
+          name: createName,
+        }),
       });
 
       const data = await res.json();
@@ -28,8 +28,10 @@ const Create = () => {
   }
 
   const handleCreate = () => {
-    setCreate(false);
-    createGroup();
+    if (createName.length > 0) {
+      setCreate(false);
+      createGroup();
+    }
   };
   const showCreate = (e) => {
     if (e.target === e.currentTarget) {
