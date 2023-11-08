@@ -42,11 +42,13 @@ const Settle = () => {
         <img src={BackBtn} alt="" onClick={handleBack} />
         <span>Select a Balance to Settle</span>
       </div>
-      {users.length > 0
-        ? users.map((item) => (
-            <SettleAccount key={item.id} name={item.username} />
-          ))
-        : ""}
+      <div className="settle-container">
+        {users.length > 0
+          ? users.map((item) => (
+              <SettleAccount key={item.id} name={item.username} />
+            ))
+          : ""}
+      </div>
     </div>
   );
 };

@@ -21,7 +21,7 @@ const Create = () => {
       });
 
       const data = await res.json();
-      console.log(groups.push(data));
+      console.log(data.message)
     } catch (error) {
       console.error("Error:", error.message);
     }

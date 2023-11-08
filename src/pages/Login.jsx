@@ -9,8 +9,7 @@ import { useEffect, useContext } from "react";
 import GlobalContext from "../context/GlobalContext";
 
 const Login = () => {
-  const { setIsConnected, setDashboard, setToken } = useContext(GlobalContext);
-  const [username, setUsername] = useState("");
+  const { setIsConnected, setDashboard, setToken, username, setUsername } = useContext(GlobalContext);
 
   const wallet = useWallet();
   const walletModal = useWalletModal();
@@ -67,7 +66,7 @@ const Login = () => {
                 "Content-Type": "application/json",
               },
               body: JSON.stringify({
-                email: `TestUser@gmail.com`,
+                email: `${username}@gmail.com`,
                 pubKey: bs58.encode(wallet.publicKey.toBuffer()),
               }),
             });
@@ -103,13 +102,13 @@ const Login = () => {
             <div className="desc-heading">
               Connect Your <span>Wallet</span> to get Started
             </div>
-            {/* <input
+            <input
               className="login-username"
               type="text"
               placeholder="Enter a Username"
               value={username}
               onChange={handleUsername}
-            /> */}
+            />
             <button onClick={ handleSignIn } className="desc-btn">
               Login Through Wallet
             </button>

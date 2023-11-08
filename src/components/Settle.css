@@ -17,3 +17,8 @@
 .settle-heading span{
     margin-left: 1.5rem;
 }
+.settle-container{
+    margin-top: 1rem;
+    overflow-y: scroll;
+    height: 45vh;
+}

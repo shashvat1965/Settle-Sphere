@@ -8,7 +8,7 @@ import GlobalContext from "../context/GlobalContext";
 const Sidebar = () => {
   const { disconnect } = useWallet();
 
-  const { setIsConnected, setGroup, group, groups } = useContext(GlobalContext);
+  const { setIsConnected, setGroup, group, groups, username } = useContext(GlobalContext);
 
   const handleSignOut = () => {
     setIsConnected(false);
@@ -32,7 +32,7 @@ const Sidebar = () => {
       <div className="profile-pic">
         <img src={ProfilePic} alt="" draggable={false} loading="lazy" />
       </div>
-      <div className="profile-name">Shivang Rai</div>
+      <div className="profile-name">{username}</div>
       <ul className="sidebar-tabs">
         <li onClick={handleHome} className={group ? "" : "selected-tab"}>
           <span>Home</span>

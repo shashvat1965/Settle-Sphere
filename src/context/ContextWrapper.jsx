@@ -12,6 +12,7 @@ export default function ContextWrapper(props) {
     const [groups, setGroups] = useState([]);
     const [activeGroup, setActiveGroup] = useState("");
     const [users, setUsers] = useState("");
+    const [username, setUsername] = useState("");
 
     return (
         <GlobalContext.Provider
@@ -36,6 +37,8 @@ export default function ContextWrapper(props) {
             setActiveGroup,
             users,
             setUsers,
+            username,
+            setUsername,
         }}
       >
         {props.children}

@@ -29,7 +29,7 @@ const Group = () => {
     }
     setTimeout(() => {
       getGroups();
-    }, 500);
+    }, 1000);
   }, [token, create, join]);
 
   const handleCreate = () => {
