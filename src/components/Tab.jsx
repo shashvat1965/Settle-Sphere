@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "./Tab.css";
 import Profile from "../../public/GroupPicture.png";
 import Solana from "../../public/Solana.svg";
@@ -11,11 +11,56 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import Copy from "../../public/copy.png";
 
 const Tab = () => {
-  const { selectedTab, setSelectedTab, groups, activeGroup, setActiveGroup } =
+  const { selectedTab, setSelectedTab, groups, activeGroup, setActiveGroup, token } =
     useContext(GlobalContext);
+    const [totalAmount, setTotalAmount] = useState(0);
+
     if (!activeGroup.length > 0) {
       setActiveGroup(groups[0].code)
     }
+
+    useEffect(() => {
+      async function getBalance() {
+        try {
+          const res = await fetch(
+            `http://127.0.0.1:3000/api/v1/txn/group/${activeGroup}`,
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+    
+          const data = await res.json();
+    
+          let owes = 0;
+          let receives = 0;
+    
+          if (data.txns.owes.length > 0) {
+            owes = data.txns.owes.reduce((accumulator, currentObject) => {
+              return accumulator + currentObject.amount;
+            }, 0);
+          }
+    
+          if (data.txns.receives.length > 0) {
+            receives = data.txns.receives.reduce((accumulator, currentObject) => {
+              return accumulator + currentObject.amount;
+            }, 0);
+          }
+    
+          const amount = receives - owes;
+          setTotalAmount(amount);
+    
+        } catch (error) {
+          console.error("Error:", error.message);
+        }
+      }
+    
+      getBalance();
+    }, [activeGroup, token]);
+  
     
   const currentGroup = groups.find((group) => group.code === activeGroup);
 
@@ -85,7 +130,7 @@ const Tab = () => {
             created on <span>{dateObject}</span>
           </div>
           <div className="tab-group-owed">
-            You Owe :<span> 1.98 </span>
+          You {totalAmount > 0 ? "are Owed" : "Owe"} :<span> {Math.abs(totalAmount)} </span>
             <img src={Solana} alt="" />
           </div>
         </div>
