@@ -10,7 +10,8 @@ import Bitcoin from "../../public/Bitcoin.svg";
 import CustomStyles from "./CustomStyles";
 
 const Make = () => {
-  const { setSelectedTab, users, activeGroup, token } = useContext(GlobalContext);
+  const { setSelectedTab, users, activeGroup, token } =
+    useContext(GlobalContext);
   const options = [
     { value: "solana", label: "Solana", image: Solana },
     { value: "bitcoin", label: "Bitcoin", image: Bitcoin },
@@ -25,6 +26,7 @@ const Make = () => {
   const [selectedReceiver, setSelectedReceiver] = useState(null);
   const [amount, setAmount] = useState("");
   const [note, setNote] = useState("");
+  const [error, setError] = useState("");
 
   const handleCryptoChange = (selectedOption) => {
     setSelectedCrypto(selectedOption);
@@ -43,7 +45,7 @@ const Make = () => {
   };
   const handleNoteChange = (e) => {
     setNote(e.target.value);
-  }; 
+  };
 
   const handleBack = () => {
     setSelectedTab("activity");
@@ -71,38 +73,57 @@ const Make = () => {
 
   async function makeTransaction() {
     try {
-      const res = await fetch(`http://127.0.0.1:3000/api/v1/txn/group/${activeGroup}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
+      const res = await fetch(
+        `http://127.0.0.1:3000/api/v1/txn/group/${activeGroup}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
             lender: selectedReceiver.value,
             receiver: selectedPayer.value,
             amount: parseInt(amount),
-            note: note
-        }),
-      });
+            note: note,
+          }),
+        }
+      );
 
       const data = await res.json();
-      console.log(data.message)
+      console.log(data.message);
+
+      return true;
     } catch (error) {
-      console.error("Error:", error.message);
+      setError(error.message);
+      return false;
     }
   }
 
-  const handleMake = () => {
-    if (selectedPayer && selectedReceiver && amount && note) {
-        makeTransaction()
-        setNote("")
-        setAmount("")
-        setSelectedPayer(null)
-        setSelectedReceiver(null)
-        setSelectedTab("activity")
+  const handleMake = async () => {
+    try {
+      if (selectedPayer && selectedReceiver && amount && note) {
+        const success = await makeTransaction();
+        if (success) {
+          setNote("");
+          setAmount("");
+          setSelectedPayer(null);
+          setSelectedReceiver(null);
+          setSelectedTab("activity");
+        } else {
+          setError("Transaction failed. Please try again.");
+          setNote("");
+          setAmount("");
+          setSelectedPayer(null);
+          setSelectedReceiver(null);
+        }
+      } else {
+        setError("Please fill in all fields");
+      }
+    } catch (error) {
+      setError(error);
     }
-  }
-
+  };
 
   return (
     <div className="make">
@@ -152,15 +173,27 @@ const Make = () => {
                 <img src={Solana} alt="" />
               </div>
               <div className="make-amount-number">
-                <input type="text" value={amount} onChange={handleAmountChange} />
+                <input
+                  type="text"
+                  value={amount}
+                  onChange={handleAmountChange}
+                />
               </div>
             </div>
           </div>
           <div className="make-note">
-            <input type="text" placeholder="Add a note..." value={note} onChange={handleNoteChange} />
+            <input
+              type="text"
+              placeholder="Add a note..."
+              value={note}
+              onChange={handleNoteChange}
+            />
           </div>
+          {error ? <div className="make-error">{error}</div> : ""}
           <div className="make-button-container">
-            <button className="make-button" onClick={handleMake}>Create Transaction</button>
+            <button className="make-button" onClick={handleMake}>
+              Create Transaction
+            </button>
           </div>
         </div>
       </div>
