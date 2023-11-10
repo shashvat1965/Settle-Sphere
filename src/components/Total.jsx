@@ -6,12 +6,33 @@ import DownArrow from "../../public/down-arrow.svg";
 import GlobalContext from "../context/GlobalContext";
 
 const Total = () => {
-  const { setSelectedTab } = useContext(GlobalContext);
+  const { setSelectedTab, history, userId } = useContext(GlobalContext);
 
   const handleBack = () => {
     setSelectedTab("activity");
   };
 
+  const totalAmount = history.reduce((sum, expense) => sum + expense.amount, 0);
+
+  const totalShare = history.reduce((total, transaction) => {
+    if (transaction.payerId === userId) {
+      return total - transaction.amount;
+    } else if (transaction.receiverId === userId) {
+      return total + transaction.amount;
+    } else {
+      return total;
+    }
+  }, 0);
+
+  const totalPaid = history.reduce((total, transaction) => {
+     if (transaction.receiverId === userId) {
+      return total + transaction.amount;
+    } else {
+      return total;
+    }
+  }, 0);
+  
+  
   return (
     <div className="total">
       <div className="total-heading">
@@ -32,21 +53,21 @@ const Total = () => {
           <div className="total-group">
             <div className="total-group-heading">Total Group Spending</div>
             <div className="total-group-data">
-              <span>5345.2</span>
+              <span>{totalAmount}</span>
               <img src={Solana} alt="" />
             </div>
           </div>
           <div className="total-group">
             <div className="total-group-heading">You Total Paid For</div>
             <div className="total-group-data">
-              <span>2024.5</span>
+              <span>{totalPaid}</span>
               <img src={Solana} alt="" />
             </div>
           </div>
           <div className="total-group">
             <div className="total-group-heading">Your Total Share</div>
             <div className="total-group-data">
-              <span>1254.25</span>
+              <span>{totalShare}</span>
               <img src={Solana} alt="" />
             </div>
           </div>

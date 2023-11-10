@@ -4,7 +4,7 @@ import ActivityItem from "./ActivityItem";
 import GlobalContext from "../context/GlobalContext";
 
 const Activity = () => {
-  const { activeGroup, token, username, users, setUsers, history, setHistory } =
+  const { activeGroup, token, username, users, setUsers, history, setHistory, setUserId } =
     useContext(GlobalContext);
   // const [users, setUsers] = useState([]);
 
@@ -24,6 +24,8 @@ const Activity = () => {
 
         const data = await res.json();
         setUsers(data.users);
+        const userObject = users.find(user => user.username === username);
+        setUserId(userObject.id)
       } catch (error) {
         console.error("Error:", error.message);
       }

@@ -12,6 +12,7 @@ export default function ContextWrapper(props) {
   const [groups, setGroups] = useState([]);
   const [activeGroup, setActiveGroup] = useState("");
   const [users, setUsers] = useState([]);
+  const [userId, setUserId] = useState(1);
   
   const [username, setUsername] = useState(() => {
     const storedUsername = localStorage.getItem('username');
@@ -50,6 +51,8 @@ export default function ContextWrapper(props) {
         setUsername,
         history,
         setHistory,
+        userId,
+        setUserId
       }}
     >
       {props.children}
