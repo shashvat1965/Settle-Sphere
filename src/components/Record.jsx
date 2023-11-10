@@ -8,6 +8,7 @@ import ProfileOne from "../../public/GroupPicture.png";
 import ProfileTwo from "../../public/friend-profile.png";
 import Solana from "../../public/Solana.svg";
 import Bitcoin from "../../public/Bitcoin.svg";
+import CustomStyles from "./CustomStyles";
 
 const Record = () => {
   const { setSelectedTab } = useContext(GlobalContext);
@@ -24,6 +25,15 @@ const Record = () => {
   const handleAmountChange = (e) => {
     setAmount(e.target.value);
   };
+  const customStyleArray = [
+    {
+      ...CustomStyles(),
+      menu: (provided) => ({
+        ...provided,
+        zIndex: 10000,
+      }),
+    },
+  ];
 
   const handleBack = () => {
     setSelectedTab("settle");
@@ -49,12 +59,14 @@ const Record = () => {
         <div className="record-transaction">
           <div className="record-amount">
             <div className="record-amount-currency">
-              <Select
+              {/* <Select
+                styles={customStyleArray[0]}
                 options={options}
                 onChange={handleCryptoChange}
                 value={selectedCrypto}
                 isSearchable={false}
-              />
+              /> */}
+              <img src={Solana} alt="" />
             </div>
             <div className="record-amount-number">
               <input type="text" />

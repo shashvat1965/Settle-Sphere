@@ -1,5 +1,5 @@
 .total {
-  margin-top: 4rem;
+  margin-top: 2rem;
   display: flex;
   height: 50%;
   color: #fff;
@@ -8,6 +8,31 @@
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+  flex-direction: column;
+}
+.total-heading{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.total-heading img{
+  cursor: pointer;
+}
+.total-heading span{
+  margin-left: 1.5rem;
+}
+
+.total-heading-content{
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+}
+.total-container{
+  display: flex;
+  margin-top: 1.5rem;
+  margin-left: 2rem;
+  overflow-y: scroll;
+  height: 40vh;
 }
 .total-left {
   width: 50%;

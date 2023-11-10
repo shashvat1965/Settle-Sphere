@@ -9,60 +9,74 @@ import GlobalContext from "../context/GlobalContext";
 import Record from "./Record";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import Copy from "../../public/copy.png";
+import Make from "./Make";
 
 const Tab = () => {
-  const { selectedTab, setSelectedTab, groups, activeGroup, setActiveGroup, token } =
-    useContext(GlobalContext);
-    const [totalAmount, setTotalAmount] = useState(0);
+  const {
+    selectedTab,
+    setSelectedTab,
+    groups,
+    activeGroup,
+    setActiveGroup,
+    token,
+  } = useContext(GlobalContext);
+  const [totalAmount, setTotalAmount] = useState(0);
 
-    if (!activeGroup.length > 0) {
-      setActiveGroup(groups[0].code)
+  if (!activeGroup.length > 0) {
+    setActiveGroup(groups[0].code);
+  }
+
+  useEffect(() => {
+    let isMounted = true;
+
+    async function getBalance() {
+      try {
+        const res = await fetch(
+          `http://127.0.0.1:3000/api/v1/txn/group/${activeGroup}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        const data = await res.json();
+
+        let owes = 0;
+        let receives = 0;
+
+        if (data.txns.owes.length > 0) {
+          owes = data.txns.owes.reduce((accumulator, currentObject) => {
+            return accumulator + currentObject.amount;
+          }, 0);
+        }
+
+        if (data.txns.receives.length > 0) {
+          receives = data.txns.receives.reduce((accumulator, currentObject) => {
+            return accumulator + currentObject.amount;
+          }, 0);
+        }
+
+        const amount = receives - owes;
+
+        if (isMounted) {
+          setTotalAmount(amount);
+        }
+      } catch (error) {
+        console.error("Error:", error.message);
+      }
     }
 
-    useEffect(() => {
-      async function getBalance() {
-        try {
-          const res = await fetch(
-            `http://127.0.0.1:3000/api/v1/txn/group/${activeGroup}`,
-            {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          );
-    
-          const data = await res.json();
-    
-          let owes = 0;
-          let receives = 0;
-    
-          if (data.txns.owes.length > 0) {
-            owes = data.txns.owes.reduce((accumulator, currentObject) => {
-              return accumulator + currentObject.amount;
-            }, 0);
-          }
-    
-          if (data.txns.receives.length > 0) {
-            receives = data.txns.receives.reduce((accumulator, currentObject) => {
-              return accumulator + currentObject.amount;
-            }, 0);
-          }
-    
-          const amount = receives - owes;
-          setTotalAmount(amount);
-    
-        } catch (error) {
-          console.error("Error:", error.message);
-        }
-      }
-    
-      getBalance();
-    }, [activeGroup, token]);
-  
-    
-  const currentGroup = groups.find((group) => group.code === activeGroup);
+    getBalance();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [activeGroup, token]);
+
+  var currentGroup = groups.find((group) => group.code === activeGroup);
 
   function formatDateToCustomString(date) {
     const options = { month: "short" };
@@ -120,7 +134,7 @@ const Tab = () => {
           <div className="tab-code">
             {currentGroup.code}
             <CopyToClipboard text={currentGroup.code}>
-                <img src={Copy} alt="" />
+              <img src={Copy} alt="" />
             </CopyToClipboard>
           </div>
           <div className="tab-created">
@@ -130,7 +144,8 @@ const Tab = () => {
             created on <span>{dateObject}</span>
           </div>
           <div className="tab-group-owed">
-          You {totalAmount > 0 ? "are Owed" : "Owe"} :<span> {Math.abs(totalAmount)} </span>
+            You {totalAmount > 0 ? "are Owed" : "Owe"} :
+            <span> {Math.abs(totalAmount)} </span>
             <img src={Solana} alt="" />
           </div>
         </div>
@@ -138,13 +153,12 @@ const Tab = () => {
       <div className="tab-buttons">
         <div
           className={`tab-button-item ${
-            selectedTab === "activity" ||
             selectedTab === "settle" ||
             selectedTab === "record"
               ? "selected-button"
               : ""
           }`}
-          onClick={() => handleTabClick("activity")}
+          onClick={() => handleTabClick("settle")}
         >
           Settle Up
         </div>
@@ -156,17 +170,18 @@ const Tab = () => {
         >
           Totals
         </div>
-        {/* <div
-          className={`tab-button-item ${selectedTab === "settle" ? "selected-button" : ""}`}
-          onClick={() => handleTabClick("settle")}
+        <div
+          className={`tab-button-item ${selectedTab === "make" ? "selected-button" : ""}`}
+          onClick={() => handleTabClick("make")}
         >
-          Settle Up
-        </div> */}
+          Create Transaction
+        </div>
       </div>
       {selectedTab === "activity" && <Activity />}
       {selectedTab === "totals" && <Total />}
       {selectedTab === "settle" && <Settle />}
       {selectedTab === "record" && <Record />}
+      {selectedTab === "make" && <Make />}
     </div>
   );
 };

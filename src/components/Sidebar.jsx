@@ -14,6 +14,7 @@ const Sidebar = () => {
     setIsConnected(false);
     disconnect();
     localStorage.removeItem("pubKey");
+    localStorage.removeItem("username");
   };
 
   const handleHome = () => {
@@ -23,6 +24,7 @@ const Sidebar = () => {
   const handleGroup = () => {
     setGroup(true);
   };
+
 
   return (
     <div className="sidebar">

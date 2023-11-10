@@ -1,14 +1,14 @@
-.activity-item {
-  margin-top: 1rem;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
 .activity-item-month {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: -1rem;
+}
+.activity-item {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
 .activity-icon {
   margin: 1rem;
@@ -31,7 +31,7 @@
   font-size: 1rem;
 }
 .activity-data-currency {
-  scale: 0.75;
+  transform: scale(0.75);
 }
 .activity-data-amount {
   margin-bottom: 0.25rem;
@@ -43,15 +43,17 @@
   line-height: normal;
 }
 .activity-type {
-  flex: 1;
-}
-.activity-type span {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   color: #ab640e;
   font-family: "Open Sans";
   font-size: 1rem;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+  flex-shrink: 0;
+  margin-left: auto; 
 }
 .activity-type-data {
   display: flex;
@@ -65,4 +67,10 @@
   font-style: normal;
   font-weight: 700;
   line-height: 2rem;
+}
+.act-type-lent{
+  color: #619C12;
+}
+.act-type-none{
+  color: #5D5D5D;
 }

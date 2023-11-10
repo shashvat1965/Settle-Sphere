@@ -1,7 +1,10 @@
-.record {
+.make {
   margin-top: 2rem;
 }
-.record-data {
+.make-container {
+  margin-top: 2rem;
+}
+.make-data {
   margin-top: 2rem;
   color: #fff;
   font-family: "Open Sans";
@@ -10,18 +13,18 @@
   font-weight: 600;
   line-height: normal;
 }
-.record-profiles {
+.make-profiles {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 2rem;
 }
-.record-profiles img {
+.make-profiles img {
   height: 125px;
   width: 125px;
   margin-bottom: 1rem;
 }
-.record-detail {
+.make-detail {
   margin-bottom: 3rem;
 }
 .profile-one,
@@ -30,35 +33,48 @@
   flex-direction: column;
   align-items: center;
 }
-.record-amount {
+.make-amount {
   display: flex;
-  margin-top: 2rem;
+  margin-top: 1rem;
   justify-content: center;
   gap: 1rem;
 }
-.record-amount-currency {
+.make-amount-currency {
   cursor: pointer;
 }
-.record-amount-number {
+.make-amount-number {
   width: 20%;
   appearance: none;
   -moz-appearance: none;
 }
-.record-amount-number input[type="text"] {
+.make-amount-number input[type="text"] {
   background-color: #0c0f17;
   border-bottom: 1px solid #98d448;
   text-align: center;
   padding: 0.5rem;
 }
-.record-button-container{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-top: 2rem;
+.make-note {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
 }
-.record-button {
+.make-note input[type="text"] {
+  width: 75%;
+
+  background-color: #0c0f17;
+  border-bottom: 1px solid #98d448;
+  text-align: center;
+  padding: 0.5rem;
+}
+.make-button-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.make-button {
   cursor: pointer;
-  padding: 0.25rem 3rem;
+  padding: 0.5rem 2rem;
   border: none;
   outline: none;
   border-radius: 8px;
@@ -66,7 +82,7 @@
   box-shadow: 0px 2px 4px 0px rgba(217, 217, 217, 0.25);
   color: #e0e0e0;
   font-family: "Open Sans";
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 500;
   line-height: normal;
 }

@@ -4,7 +4,7 @@ import Picture from "../../public/friend-profile.png";
 import Solana from "../../public/Solana.svg";
 import GlobalContext from "../context/GlobalContext";
 
-const SettleAccount = ({ name }) => {
+const SettleAccount = ({ name, amount, type }) => {
   const { setSelectedTab } = useContext(GlobalContext);
   const handleRecord = () => {
     setSelectedTab("record");
@@ -17,10 +17,10 @@ const SettleAccount = ({ name }) => {
       <div className="settle-name">{name}</div>
       <div className="settle-record">
         <div className="settle-activity">
-          <span>You are owed</span>
+          {type === 'receives' ? <span className="settle-type-receive">You are owed</span> : <span className="settle-type-owe">You Owe</span>}
         </div>
         <div className="settle-data">
-          <span>200</span>
+          <span>{amount}</span>
           <img src={Solana} alt="" />
         </div>
       </div>

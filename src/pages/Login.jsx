@@ -9,7 +9,8 @@ import { useEffect, useContext } from "react";
 import GlobalContext from "../context/GlobalContext";
 
 const Login = () => {
-  const { setIsConnected, setDashboard, setToken, username, setUsername } = useContext(GlobalContext);
+  const { setIsConnected, setDashboard, setToken, username, setUsername } =
+    useContext(GlobalContext);
 
   const wallet = useWallet();
   const walletModal = useWalletModal();
@@ -54,6 +55,7 @@ const Login = () => {
       if (!wallet.disconnecting) {
         setIsConnected(true);
         setDashboard(true);
+        localStorage.setItem("username", username);
         localStorage.setItem(
           "pubKey",
           bs58.encode(wallet.publicKey.toBuffer())
@@ -85,11 +87,11 @@ const Login = () => {
   }, [wallet.connected]);
 
   const handleUsername = (e) => {
-    setUsername(e.target.value);
+    setUsername(e.target.value.trim());
   };
-  const handleEmptyUsername = () =>{
-    alert("Please Enter a Username!")
-  }
+  const handleEmptyUsername = () => {
+    alert("Please Enter a Username!");
+  };
 
   return (
     <>
@@ -109,7 +111,7 @@ const Login = () => {
               value={username}
               onChange={handleUsername}
             />
-            <button onClick={ handleSignIn } className="desc-btn">
+            <button onClick={handleSignIn} className="desc-btn">
               Login Through Wallet
             </button>
           </div>

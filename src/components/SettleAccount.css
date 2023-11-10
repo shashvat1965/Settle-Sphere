@@ -30,6 +30,9 @@
   flex-direction: column;
   align-items: flex-end;
 }
+.settle-type-owe{
+  color: #AB640E;
+}
 .settle-data {
   display: flex;
   align-items: center;
