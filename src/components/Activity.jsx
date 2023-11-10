@@ -4,9 +4,10 @@ import ActivityItem from "./ActivityItem";
 import GlobalContext from "../context/GlobalContext";
 
 const Activity = () => {
-  const { activeGroup, token, username, users, setUsers } = useContext(GlobalContext);
+  const { activeGroup, token, username, users, setUsers } =
+    useContext(GlobalContext);
   // const [users, setUsers] = useState([]);
-  const [history, setHistory] = useState([])
+  const [history, setHistory] = useState([]);
 
   useEffect(() => {
     async function getUsers() {
@@ -48,33 +49,44 @@ const Activity = () => {
 
         const data = await res.json();
         // console.log(users);
-        // console.log(data.txn_history);  
-        setHistory(data.txn_history)
+        // console.log(data.txn_history);
+        setHistory(data.txn_history);
       } catch (error) {
         console.error("Error:", error.message);
       }
     }
 
     getBalance();
-  }, [ token, users]); 
-  const mergedArray = history?.map(transaction => {
-    const payer = users?.find(user => user.id === transaction.payerId);
-    const receiver = users?.find(user => user.id === transaction.receiverId);
-  
+  }, [token, users]);
+  const mergedArray = history?.map((transaction) => {
+    const payer = users?.find((user) => user.id === transaction.payerId);
+    const receiver = users?.find((user) => user.id === transaction.receiverId);
+
     return {
-      payerName: payer ? payer.username : 'Unknown',
-      receiverName: receiver ? receiver.username : 'Unknown',
+      payerName: payer ? payer.username : "Unknown",
+      receiverName: receiver ? receiver.username : "Unknown",
       amount: transaction.amount,
       note: transaction.note,
       settled: transaction.settled,
     };
   });
-  
+  const reversedArray = mergedArray.slice().reverse();
 
   return (
     <div className="activity-container">
       {/* <div className="activity-month">October 2023</div> */}
-      {history ? mergedArray.map((item) => (<ActivityItem  note={item.note} payer={item.payerName === username ? "You" : item.payerName} receiver={item.receiverName === username ? "You" : item.receiverName} amount={item.amount} />)) : ""}
+      {history
+        ? reversedArray.map((item) => (
+            <ActivityItem
+              note={item.note}
+              payer={item.payerName === username ? "You" : item.payerName}
+              receiver={
+                item.receiverName === username ? "You" : item.receiverName
+              }
+              amount={item.amount}
+            />
+          ))
+        : ""}
     </div>
   );
 };

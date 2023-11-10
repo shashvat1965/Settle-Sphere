@@ -78,8 +78,8 @@ const Make = () => {
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
-            lender: selectedPayer.value,
-            receiver: selectedReceiver.value,
+            lender: selectedReceiver.value,
+            receiver: selectedPayer.value,
             amount: parseInt(amount),
             note: note
         }),
