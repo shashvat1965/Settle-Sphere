@@ -4,10 +4,9 @@ import ActivityItem from "./ActivityItem";
 import GlobalContext from "../context/GlobalContext";
 
 const Activity = () => {
-  const { activeGroup, token, username, users, setUsers } =
+  const { activeGroup, token, username, users, setUsers, history, setHistory } =
     useContext(GlobalContext);
   // const [users, setUsers] = useState([]);
-  const [history, setHistory] = useState([]);
 
   useEffect(() => {
     async function getUsers() {

@@ -19,6 +19,7 @@ const Tab = () => {
     activeGroup,
     setActiveGroup,
     token,
+    history,
   } = useContext(GlobalContext);
   const [totalAmount, setTotalAmount] = useState(0);
 
@@ -74,7 +75,7 @@ const Tab = () => {
     return () => {
       isMounted = false;
     };
-  }, [activeGroup, token]);
+  }, [activeGroup, token, history]);
 
   var currentGroup = groups.find((group) => group.code === activeGroup);
 

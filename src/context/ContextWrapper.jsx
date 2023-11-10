@@ -17,6 +17,7 @@ export default function ContextWrapper(props) {
     const storedUsername = localStorage.getItem('username');
     return storedUsername || ""; 
   });
+  const [history, setHistory] = useState([]);
 
   useEffect(() => {
     localStorage.setItem('username', username);
@@ -47,6 +48,8 @@ export default function ContextWrapper(props) {
         setUsers,
         username,
         setUsername,
+        history,
+        setHistory,
       }}
     >
       {props.children}

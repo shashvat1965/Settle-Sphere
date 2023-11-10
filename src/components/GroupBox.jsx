@@ -5,7 +5,7 @@ import Solana from "../../public/Solana.svg";
 import GlobalContext from "../context/GlobalContext";
 
 const GroupBox = ({ groupName, groupCode, createdBy }) => {
-  const { setGroup, setActiveGroup, token, setUsers, activeGroup } =
+  const { setGroup, setActiveGroup, token, setUsers, history } =
     useContext(GlobalContext);
   const [totalAmount, setTotalAmount] = useState(0);
 
@@ -71,7 +71,7 @@ const GroupBox = ({ groupName, groupCode, createdBy }) => {
     }
 
     getBalance();
-  }, [groupCode, token]);
+  }, [groupCode, token, history]);
   return (
     <div onClick={handleGroup} className="group-box">
       <div className="box-picture">

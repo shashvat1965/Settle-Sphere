@@ -99,6 +99,7 @@ const Make = () => {
         setAmount("")
         setSelectedPayer(null)
         setSelectedReceiver(null)
+        setSelectedTab("activity")
     }
   }
 

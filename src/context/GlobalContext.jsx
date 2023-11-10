@@ -23,6 +23,8 @@ const GlobalContext = React.createContext({
     setUsers: () => {},
     username: "",
     setUsername: () => {},
+    history: [],
+    setHistory: () => {},
 });
 
 export default GlobalContext
