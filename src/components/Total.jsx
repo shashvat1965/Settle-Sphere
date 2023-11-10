@@ -19,13 +19,13 @@ const Total = () => {
           <img src={BackBtn} alt="" onClick={handleBack} />
           <span>Totals</span>
         </div>
-        <div className="filter">
+        {/* <div className="filter">
           <select className="time-filter">
             <option value="allTime">All Time</option>
             <option value="thisMonth">This Month</option>
             <option value="thisDay">This Day</option>
           </select>
-        </div>
+        </div> */}
       </div>
       <div className="total-container">
         <div className="total-left">

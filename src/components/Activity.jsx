@@ -58,8 +58,8 @@ const Activity = () => {
     getBalance();
   }, [ token, users]); 
   const mergedArray = history?.map(transaction => {
-    const payer = users.find(user => user.id === transaction.payerId);
-    const receiver = users.find(user => user.id === transaction.receiverId);
+    const payer = users?.find(user => user.id === transaction.payerId);
+    const receiver = users?.find(user => user.id === transaction.receiverId);
   
     return {
       payerName: payer ? payer.username : 'Unknown',
