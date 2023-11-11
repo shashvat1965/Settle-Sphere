@@ -4,7 +4,6 @@ import ActivityIcon from "../../public/Activity.png";
 import Solana from "../../public/Solana.svg";
 
 const ActivityItem = ({ note, payer, receiver, amount }) => {
-
   return (
     <div className="activity-item">
       {/* <div className="activity-item-month">
@@ -16,14 +15,25 @@ const ActivityItem = ({ note, payer, receiver, amount }) => {
       </div>
       <div className="activity-details">
         <div className="activity-title">{note}</div>
-        <div className="activity-data">
-          <span className="activity-data-name">{payer}</span>
-          <span className="activity-data-logic">Paid</span>
-          <span className="activity-data-amount">{amount}</span>
-          <span className="activity-data-currency">
-            <img src={Solana} alt="" />
-          </span>
-        </div>
+        {payer === "You" ? (
+          <div className="activity-data">
+            <span className="activity-data-name">{receiver}</span>
+            <span className="activity-data-logic">Borrowed</span>
+            <span className="activity-data-amount">{amount}</span>
+            <span className="activity-data-currency">
+              <img src={Solana} alt="" />
+            </span>
+          </div>
+        ) : (
+          <div className="activity-data">
+            <span className="activity-data-name">{payer}</span>
+            <span className="activity-data-logic">Paid</span>
+            <span className="activity-data-amount">{amount}</span>
+            <span className="activity-data-currency">
+              <img src={Solana} alt="" />
+            </span>
+          </div>
+        )}
       </div>
       <div className="activity-type">
         {payer === "You" ? (
