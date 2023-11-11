@@ -34,11 +34,9 @@ const Make = () => {
   };
   const handlePayerChange = (selectedOption) => {
     setSelectedPayer(selectedOption);
-    console.log(selectedPayer.label);
   };
   const handleReceiverChange = (selectedOption) => {
     setSelectedReceiver(selectedOption);
-    console.log(selectedReceiver.label);
   };
   const handleAmountChange = (e) => {
     setAmount(e.target.value);

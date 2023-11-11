@@ -23,8 +23,8 @@ const Activity = () => {
 
         const data = await res.json();
         setUsers(data.users);
-        const userObject = users.find(user => user.username === username);
-        setUserId(userObject.id)
+        const userObject = users?.find(user => user.username === username);
+        setUserId(userObject?.id)
       } catch (error) {
         console.error("Error:", error.message);
       }
@@ -70,7 +70,7 @@ const Activity = () => {
       settled: transaction.settled,
     };
   });
-  const reversedArray = mergedArray.slice().reverse();
+  const reversedArray = mergedArray?.slice().reverse();
 
   return (
     <div className="activity-container">

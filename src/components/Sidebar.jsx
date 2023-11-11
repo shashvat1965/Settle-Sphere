@@ -8,13 +8,15 @@ import GlobalContext from "../context/GlobalContext";
 const Sidebar = () => {
   const { disconnect } = useWallet();
 
-  const { setIsConnected, setGroup, group, groups, username } = useContext(GlobalContext);
+  const { setIsConnected, setGroup, group, groups, username, setSelectedTab } = useContext(GlobalContext);
 
   const handleSignOut = () => {
     setIsConnected(false);
     disconnect();
     localStorage.removeItem("pubKey");
     localStorage.removeItem("username");
+    setSelectedTab("activity");
+    setGroup(false)
   };
 
   const handleHome = () => {

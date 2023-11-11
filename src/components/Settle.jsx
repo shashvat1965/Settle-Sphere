@@ -26,8 +26,8 @@ const Settle = () => {
 
         const data = await res.json();
         // console.log(data)
-        setOwes(data.txns.owes);
-        setReceives(data.txns.receives);
+        setOwes(data.txns?.owes);
+        setReceives(data.txns?.receives);
       } catch (error) {
         console.error("Error:", error.message);
       }

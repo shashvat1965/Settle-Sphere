@@ -22,13 +22,14 @@ const Tab = () => {
     history,
   } = useContext(GlobalContext);
   const [totalAmount, setTotalAmount] = useState(0);
-
-  if (!activeGroup.length > 0) {
-    setActiveGroup(groups[0].code);
-  }
+  const [currentGroup, setCurrentGroup] = useState([groups[0]]);
 
   useEffect(() => {
     let isMounted = true;
+    if (activeGroup === "") {
+      setActiveGroup(groups[0].code);
+    }
+    setCurrentGroup(groups.find((group) => group.code === activeGroup))
 
     async function getBalance() {
       try {
@@ -48,13 +49,13 @@ const Tab = () => {
         let owes = 0;
         let receives = 0;
 
-        if (data.txns.owes.length > 0) {
+        if (data.txns?.owes.length > 0) {
           owes = data.txns.owes.reduce((accumulator, currentObject) => {
             return accumulator + currentObject.amount;
           }, 0);
         }
 
-        if (data.txns.receives.length > 0) {
+        if (data.txns?.receives.length > 0) {
           receives = data.txns.receives.reduce((accumulator, currentObject) => {
             return accumulator + currentObject.amount;
           }, 0);
@@ -77,7 +78,7 @@ const Tab = () => {
     };
   }, [activeGroup, token, history]);
 
-  var currentGroup = groups.find((group) => group.code === activeGroup);
+  // const currentGroup = groups.find((group) => group.code === activeGroup);
 
   function formatDateToCustomString(date) {
     const options = { month: "short" };
@@ -115,10 +116,9 @@ const Tab = () => {
 
     return customFormattedDate;
   }
-
-  const dateObject = formatDateToCustomString(
-    new Date(currentGroup?.created_at)
-  );
+  const dateObject = currentGroup?.created_at
+    ? formatDateToCustomString(new Date(currentGroup.created_at))
+    : "N/A";
 
   const handleTabClick = (tab) => {
     setSelectedTab(tab);
@@ -154,8 +154,7 @@ const Tab = () => {
       <div className="tab-buttons">
         <div
           className={`tab-button-item ${
-            selectedTab === "settle" ||
-            selectedTab === "record"
+            selectedTab === "settle" || selectedTab === "record"
               ? "selected-button"
               : ""
           }`}
@@ -172,7 +171,9 @@ const Tab = () => {
           Totals
         </div>
         <div
-          className={`tab-button-item ${selectedTab === "make" ? "selected-button" : ""}`}
+          className={`tab-button-item ${
+            selectedTab === "make" ? "selected-button" : ""
+          }`}
           onClick={() => handleTabClick("make")}
         >
           Create Transaction

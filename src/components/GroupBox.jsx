@@ -51,13 +51,13 @@ const GroupBox = ({ groupName, groupCode, createdBy }) => {
         let owes = 0;
         let receives = 0;
 
-        if (data.txns.owes.length > 0) {
+        if (data.txns?.owes.length > 0) {
           owes = data.txns.owes.reduce((accumulator, currentObject) => {
             return accumulator + currentObject.amount;
           }, 0);
         }
 
-        if (data.txns.receives.length > 0) {
+        if (data.txns?.receives.length > 0) {
           receives = data.txns.receives.reduce((accumulator, currentObject) => {
             return accumulator + currentObject.amount;
           }, 0);
