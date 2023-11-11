@@ -6,7 +6,6 @@ import GlobalContext from "../context/GlobalContext";
 const Activity = () => {
   const { activeGroup, token, username, users, setUsers, history, setHistory, setUserId } =
     useContext(GlobalContext);
-  // const [users, setUsers] = useState([]);
 
   useEffect(() => {
     async function getUsers() {

@@ -60,6 +60,7 @@ export default function CustomStyles() {
           }),
           menuList: (provided) => ({
             ...provided,
+            maxHeight: '150px',
             paddingTop: "1rem",
             paddingBottom: "1rem",
             backgroundColor: "#222222",

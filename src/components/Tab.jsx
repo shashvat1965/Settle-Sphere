@@ -117,7 +117,7 @@ const Tab = () => {
   }
 
   const dateObject = formatDateToCustomString(
-    new Date(currentGroup.created_at)
+    new Date(currentGroup?.created_at)
   );
 
   const handleTabClick = (tab) => {

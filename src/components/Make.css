@@ -2,8 +2,8 @@
   margin-top: 1rem;
 }
 .make-container {
-  margin-top: 2rem;
-  height: 40vh;
+  margin-top: .5rem;
+  height: 45vh;
   overflow-y: scroll;
 }
 .make-data {

@@ -131,7 +131,7 @@ const Make = () => {
         <img src={BackBtn} alt="" onClick={handleBack} />
         <span>Create Transaction</span>
       </div>
-      <div className="make-conatiner">
+      <div className="make-container">
         <div className="make-data">
           <div className="make-profiles">
             <div className="profile-one">

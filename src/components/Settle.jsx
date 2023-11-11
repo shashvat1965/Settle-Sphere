@@ -48,7 +48,6 @@ const Settle = () => {
 
   const filteredOwesArray = owesArray.filter((item) => item !== null);
   const filteredReceivesArray = receivesArray.filter((item) => item !== null);
-  console.log(filteredReceivesArray)
 
 
   const handleBack = () => {
