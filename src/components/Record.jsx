@@ -9,15 +9,18 @@ import ProfileTwo from "../../public/friend-profile.png";
 import Solana from "../../public/Solana.svg";
 import Bitcoin from "../../public/Bitcoin.svg";
 import CustomStyles from "./CustomStyles";
+import { useConnection, useWallet } from "@solana/wallet-adapter-react";
+import { LAMPORTS_PER_SOL } from "@solana/web3.js";
+import * as web3 from "@solana/web3.js";
 
 const Record = () => {
-  const { setSelectedTab } = useContext(GlobalContext);
+  const { setSelectedTab, settleAccount } = useContext(GlobalContext);
   const options = [
     { value: "solana", label: "Solana", image: Solana },
     { value: "bitcoin", label: "Bitcoin", image: Bitcoin },
   ];
   const [selectedCrypto, setSelectedCrypto] = useState(null);
-  const [amount, setAmount] = useState("");
+  const [amount, setAmount] = useState(settleAccount[0].amount);
 
   const handleCryptoChange = (selectedOption) => {
     setSelectedCrypto(selectedOption);
@@ -34,6 +37,30 @@ const Record = () => {
       }),
     },
   ];
+  const { publicKey, sendTransaction } = useWallet();
+
+  const { connection } = useConnection();
+
+  const handleSettle = (e) => {
+    event.preventDefault();
+    const transaction = new web3.Transaction();
+    const sendSolInstruction = web3.SystemProgram.transfer({
+      fromPubkey: publicKey,
+
+      toPubkey: "395utDE4wdthX3VE2jPKRodK67wbovxztkDKEnDMmbP9",
+
+      lamports: LAMPORTS_PER_SOL *  amount,
+    });
+
+    transaction.add(sendSolInstruction);
+
+    sendTransaction(transaction, connection).then((sig) => {
+      console.log(sig);
+      setSelectedTab("activity");
+    });
+  };
+
+  console.log(settleAccount);
 
   const handleBack = () => {
     setSelectedTab("settle");
@@ -53,7 +80,7 @@ const Record = () => {
           <div className="record-detail">Paying</div>
           <div className="profile-two">
             <img src={ProfileTwo} alt="" />
-            <div className="record-profile-name">Shashvat</div>
+            <div className="record-profile-name">{settleAccount[0].name}</div>
           </div>
         </div>
         <div className="record-transaction">
@@ -69,12 +96,14 @@ const Record = () => {
               <img src={Solana} alt="" />
             </div>
             <div className="record-amount-number">
-              <input type="text" />
+              {settleAccount[0].amount}
             </div>
           </div>
         </div>
         <div className="record-button-container">
-          <button className="record-button">Settle</button>
+          <button onClick={handleSettle} className="record-button">
+            Settle
+          </button>
         </div>
       </div>
     </div>

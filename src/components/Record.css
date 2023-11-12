@@ -1,5 +1,5 @@
 .record {
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 .record-data {
   margin-top: 2rem;
@@ -35,21 +35,28 @@
   margin-top: 2rem;
   justify-content: center;
   gap: 1rem;
+  align-items: center;
 }
 .record-amount-currency {
   cursor: pointer;
 }
 .record-amount-number {
+  margin-top: -.25rem;
   width: 20%;
+  padding-bottom: .5rem;
   appearance: none;
   -moz-appearance: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #98D448;
 }
-.record-amount-number input[type="text"] {
+/* .record-amount-number input[type="text"] {
   background-color: #0c0f17;
   border-bottom: 1px solid #98d448;
   text-align: center;
   padding: 0.5rem;
-}
+} */
 .record-button-container{
     width: 100%;
     display: flex;

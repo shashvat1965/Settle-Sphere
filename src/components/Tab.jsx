@@ -27,9 +27,11 @@ const Tab = () => {
   useEffect(() => {
     let isMounted = true;
     if (activeGroup === "") {
-      setActiveGroup(groups[0].code);
+      setCurrentGroup(groups[0])
     }
-    setCurrentGroup(groups.find((group) => group.code === activeGroup))
+    else{
+      setCurrentGroup(groups.find((group) => group.code === activeGroup))
+    }
 
     async function getBalance() {
       try {

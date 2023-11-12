@@ -4,13 +4,20 @@ import Picture from "../../public/friend-profile.png";
 import Solana from "../../public/Solana.svg";
 import GlobalContext from "../context/GlobalContext";
 
-const SettleAccount = ({ name, amount, type }) => {
-  const { setSelectedTab } = useContext(GlobalContext);
+const SettleAccount = ({ id, name, amount, type }) => {
+  const { setSelectedTab, setSettleAccount, settleAccount } = useContext(GlobalContext);
   const handleRecord = () => {
     setSelectedTab("record");
+    setSettleAccount([
+      {
+        id: id,
+        name: name,
+        amount: amount,
+      }
+    ]);
   };
   return (
-    <div className="settle-account" onClick={handleRecord}>
+    <div className="settle-account" onClick={ type === "owe" ? handleRecord : null}>
       <div className="settle-profile">
         <img src={Picture} alt="" />
       </div>

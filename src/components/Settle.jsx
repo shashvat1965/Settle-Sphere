@@ -37,7 +37,9 @@ const Settle = () => {
   }, [activeGroup, token]);
 
   const owesArray = users.map((user) => {
-    const matchingTxn = owes.find((txn) => txn.edges.destination.id === user.id);
+    const matchingTxn = owes.find(
+      (txn) => txn.edges.destination.id === user.id
+    );
     return matchingTxn ? { ...user, ...matchingTxn } : null;
   });
 
@@ -49,10 +51,10 @@ const Settle = () => {
   const filteredOwesArray = owesArray.filter((item) => item !== null);
   const filteredReceivesArray = receivesArray.filter((item) => item !== null);
 
-
   const handleBack = () => {
     setSelectedTab("activity");
   };
+  // console.log(filteredOwesArray);
 
   return (
     <div className="settle">
@@ -61,24 +63,25 @@ const Settle = () => {
         <span>Select a Balance to Settle</span>
       </div>
       <div className="settle-container">
-        {filteredReceivesArray.length > 0
-          ? filteredReceivesArray.map((item) => (
-              <SettleAccount
-                key={item.id}
-                name={item.username}
-                amount={item.amount}
-                type="receives"
-              />
-            ))
-          : ""}
-
         {filteredOwesArray.length > 0
           ? filteredOwesArray.map((item) => (
               <SettleAccount
+                id={item.id}
                 key={item.id}
                 name={item.username}
                 amount={item.amount}
                 type="owe"
+              />
+            ))
+          : ""}
+        {filteredReceivesArray.length > 0
+          ? filteredReceivesArray.map((item) => (
+              <SettleAccount
+                id={item.id}
+                key={item.id}
+                name={item.username}
+                amount={item.amount}
+                type="receives"
               />
             ))
           : ""}

@@ -4,8 +4,16 @@ import ActivityItem from "./ActivityItem";
 import GlobalContext from "../context/GlobalContext";
 
 const Activity = () => {
-  const { activeGroup, token, username, users, setUsers, history, setHistory, setUserId } =
-    useContext(GlobalContext);
+  const {
+    activeGroup,
+    token,
+    username,
+    users,
+    setUsers,
+    history,
+    setHistory,
+    setUserId,
+  } = useContext(GlobalContext);
 
   useEffect(() => {
     async function getUsers() {
@@ -23,8 +31,8 @@ const Activity = () => {
 
         const data = await res.json();
         setUsers(data.users);
-        const userObject = users?.find(user => user.username === username);
-        setUserId(userObject?.id)
+        const userObject = users?.find((user) => user.username === username);
+        setUserId(userObject?.id);
       } catch (error) {
         console.error("Error:", error.message);
       }
@@ -68,6 +76,7 @@ const Activity = () => {
       amount: transaction.amount,
       note: transaction.note,
       settled: transaction.settled,
+      id: transaction.id,
     };
   });
   const reversedArray = mergedArray?.slice().reverse();
@@ -78,12 +87,14 @@ const Activity = () => {
       {history
         ? reversedArray.map((item) => (
             <ActivityItem
+              key={item.id}
               note={item.note}
               payer={item.payerName === username ? "You" : item.payerName}
               receiver={
                 item.receiverName === username ? "You" : item.receiverName
               }
               amount={item.amount}
+              settled={item.settled}
             />
           ))
         : ""}

@@ -74,3 +74,19 @@
 .act-type-none{
   color: #5D5D5D;
 }
+.activity-settled{
+  margin-top: -.5rem;
+  flex-grow: 1;
+  align-items: center;
+  display: flex;
+  gap: .5rem;
+  color: #fff;
+}
+.settled-payer{
+  color: #619C12;
+}
+.settled-amount{
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+}
