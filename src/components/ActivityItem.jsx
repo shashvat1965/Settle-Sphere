@@ -15,11 +15,11 @@ const ActivityItem = ({ note, payer, receiver, amount, settled }) => {
       </div>
       {settled ? (
         <div className="activity-settled">
-          <span className="settled-payer">{payer}</span> Paid{" "}
+          <span className="settled-payer">{receiver}</span> Paid{" "}
           <span className="settled-amount">
             {amount} <img src={Solana} alt="" />
           </span>{" "}
-          To <span className="settled-receiver">{receiver}</span>
+          To <span className="settled-receiver">{payer}</span>
         </div>
       ) : (
         <div className="activity-details">

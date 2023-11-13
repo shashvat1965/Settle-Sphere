@@ -14,7 +14,7 @@ import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import * as web3 from "@solana/web3.js";
 
 const Record = () => {
-  const { setSelectedTab, settleAccount } = useContext(GlobalContext);
+  const { setSelectedTab, settleAccount,activeGroup, token } = useContext(GlobalContext);
   const options = [
     { value: "solana", label: "Solana", image: Solana },
     { value: "bitcoin", label: "Bitcoin", image: Bitcoin },
@@ -40,16 +40,38 @@ const Record = () => {
   const { publicKey, sendTransaction } = useWallet();
 
   const { connection } = useConnection();
+    async function getBalance() {
+      try {
+        const res = await fetch(
+          `http://127.0.0.1:3000/api/v1/txn/group/${activeGroup}/settle/${settleAccount[0].ownerId}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        const data = await res.json();
+        console.log(data);
+      } catch (error) {
+        console.error("Error:", error.message);
+      }
+    }
+
+  console.log(settleAccount)
 
   const handleSettle = (e) => {
     event.preventDefault();
+    getBalance();
     const transaction = new web3.Transaction();
     const sendSolInstruction = web3.SystemProgram.transfer({
       fromPubkey: publicKey,
 
       toPubkey: "395utDE4wdthX3VE2jPKRodK67wbovxztkDKEnDMmbP9",
 
-      lamports: LAMPORTS_PER_SOL *  amount,
+      lamports: LAMPORTS_PER_SOL *  0.1,
     });
 
     transaction.add(sendSolInstruction);
@@ -60,7 +82,6 @@ const Record = () => {
     });
   };
 
-  console.log(settleAccount);
 
   const handleBack = () => {
     setSelectedTab("settle");
