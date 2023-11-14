@@ -26,7 +26,7 @@ const Total = () => {
     setTotalAmount(totalAmount);
 
     const totalPaid = history?.reduce((total, transaction) => {
-      if (transaction.receiverId === userId && transaction.settled) {
+      if (transaction.payerId === userId && !transaction.settled) {
         return total + transaction.amount;
       } else {
         return total;
@@ -35,7 +35,7 @@ const Total = () => {
     setTotalPaid(totalPaid);
 
     const totalShare = history?.reduce((total, transaction) => {
-      if (transaction.payerId === userId && !transaction.settled) {
+      if (transaction.receiverId === userId && !transaction.settled) {
         return total + transaction.amount;
       } else {
         return total;
