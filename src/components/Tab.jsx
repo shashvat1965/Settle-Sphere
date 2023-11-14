@@ -23,6 +23,12 @@ const Tab = () => {
   } = useContext(GlobalContext);
   const [totalAmount, setTotalAmount] = useState(0);
   const [currentGroup, setCurrentGroup] = useState([groups[0]]);
+  if (activeGroup.length < 0) {
+    setActiveGroup(groups[0].code)
+  }
+
+  // console.log(activeGroup)
+
 
   useEffect(() => {
     let isMounted = true;

@@ -53,7 +53,6 @@ const Login = () => {
   useEffect(() => {
     if (wallet.connected && wallet.publicKey) {
       if (!wallet.disconnecting) {
-        setIsConnected(true);
         setDashboard(true);
         localStorage.setItem("username", username);
         localStorage.setItem(
@@ -77,6 +76,7 @@ const Login = () => {
             // console.log(data.message);
             // console.log(data)
             localStorage.setItem("token", data.token)
+            setIsConnected(true);
             setToken(data.token);
           } catch (error) {
             console.error("Error:", error.message);

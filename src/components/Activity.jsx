@@ -13,10 +13,15 @@ const Activity = () => {
     history,
     setHistory,
     setUserId,
+    setActiveGroup,
+    groups
   } = useContext(GlobalContext);
 
   useEffect(() => {
     async function getUsers() {
+      if (activeGroup.length < 0) {
+        setActiveGroup(groups[0].code)
+      }
       try {
         const res = await fetch(
           `https://bits-dvm.org/settlesphere/api/v1/groups/members/${activeGroup}`,
@@ -43,6 +48,9 @@ const Activity = () => {
 
   useEffect(() => {
     async function getBalance() {
+      if (activeGroup.length < 0) {
+        setActiveGroup(groups[0].code)
+      }
       try {
         const res = await fetch(
           `https://bits-dvm.org/settlesphere/api/v1/txn/group/${activeGroup}/history`,
