@@ -62,7 +62,7 @@ const Login = () => {
         );
         async function connectToWallet() {
           try {
-            const res = await fetch("http://localhost:3000/api/v1/auth/login", {
+            const res = await fetch("https://bits-dvm.org/settlesphere/api/v1/auth/login", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -75,6 +75,7 @@ const Login = () => {
 
             const data = await res.json();
             // console.log(data.message);
+            // console.log(data)
             setToken(data.token);
           } catch (error) {
             console.error("Error:", error.message);

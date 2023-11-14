@@ -9,7 +9,7 @@ const Create = () => {
 
   async function createGroup() {
     try {
-      const res = await fetch("http://127.0.0.1:3000/api/v1/groups", {
+      const res = await fetch("https://bits-dvm.org/settlesphere/api/v1/groups", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

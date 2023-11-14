@@ -15,7 +15,7 @@ const GroupBox = ({ groupName, groupCode, createdBy }) => {
 
     try {
       const res = await fetch(
-        `http://127.0.0.1:3000/api/v1/groups/members/${groupCode}`,
+        `https://bits-dvm.org/settlesphere/api/v1/groups/members/${groupCode}`,
         {
           method: "GET",
           headers: {
@@ -36,7 +36,7 @@ const GroupBox = ({ groupName, groupCode, createdBy }) => {
     async function getBalance() {
       try {
         const res = await fetch(
-          `http://127.0.0.1:3000/api/v1/txn/group/${groupCode}`,
+          `https://bits-dvm.org/settlesphere/api/v1/txn/group/${groupCode}`,
           {
             method: "GET",
             headers: {

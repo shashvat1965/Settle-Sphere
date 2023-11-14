@@ -43,7 +43,7 @@ const Record = () => {
     async function getBalance() {
       try {
         const res = await fetch(
-          `http://127.0.0.1:3000/api/v1/txn/group/${activeGroup}/settle/${settleAccount[0].ownerId}`,
+          `https://bits-dvm.org/settlesphere/api/v1/txn/group/${activeGroup}/settle/${settleAccount[0].ownerId}`,
           {
             method: "GET",
             headers: {

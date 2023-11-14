@@ -88,7 +88,7 @@ const Make = () => {
   async function makeTransaction() {
     try {
       const res = await fetch(
-        `http://127.0.0.1:3000/api/v1/txn/group/${activeGroup}`,
+        `https://bits-dvm.org/settlesphere/api/v1/txn/group/${activeGroup}`,
         {
           method: "POST",
           headers: {

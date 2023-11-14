@@ -12,7 +12,7 @@ const Group = () => {
   useEffect(() => {
     async function getGroups() {
       try {
-        const res = await fetch("http://localhost:3000/api/v1/groups", {
+        const res = await fetch("https://bits-dvm.org/settlesphere/api/v1/groups", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

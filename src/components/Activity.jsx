@@ -19,7 +19,7 @@ const Activity = () => {
     async function getUsers() {
       try {
         const res = await fetch(
-          `http://127.0.0.1:3000/api/v1/groups/members/${activeGroup}`,
+          `https://bits-dvm.org/settlesphere/api/v1/groups/members/${activeGroup}`,
           {
             method: "GET",
             headers: {
@@ -45,7 +45,7 @@ const Activity = () => {
     async function getBalance() {
       try {
         const res = await fetch(
-          `http://127.0.0.1:3000/api/v1/txn/group/${activeGroup}/history`,
+          `https://bits-dvm.org/settlesphere/api/v1/txn/group/${activeGroup}/history`,
           {
             method: "GET",
             headers: {
