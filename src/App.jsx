@@ -21,13 +21,14 @@ function App() {
   const endpoint = useMemo(() => clusterApiUrl(network), [network]);
 
   const wallets = useMemo(() => [new PhantomWalletAdapter()], []);
+  const token = localStorage.getItem("token");
 
   return (
     <>
       <ConnectionProvider endpoint={endpoint}>
         <WalletProvider wallets={wallets} autoConnect={true}>
           <WalletModalProvider>
-            {isConnected ? dashboard ? <Dashboard /> : <Home /> : <Login />}
+            {isConnected && token ? dashboard ? <Dashboard /> : <Home /> : <Login />}
           </WalletModalProvider>
         </WalletProvider>
       </ConnectionProvider>

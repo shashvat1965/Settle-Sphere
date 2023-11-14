@@ -76,6 +76,7 @@ const Login = () => {
             const data = await res.json();
             // console.log(data.message);
             // console.log(data)
+            localStorage.setItem("token", data.token)
             setToken(data.token);
           } catch (error) {
             console.error("Error:", error.message);
