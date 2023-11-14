@@ -6,10 +6,13 @@ import DownArrow from "../../public/down-arrow.svg";
 import GlobalContext from "../context/GlobalContext";
 
 const Total = () => {
-  const { setSelectedTab, history, userId, activeGroup } = useContext(GlobalContext);
-  const [totalAmount, setTotalAmount] = useState(0)
-  const [totalShare, setTotalShare] = useState(0)
-  const [totalPaid, setTotalPaid] = useState(0)
+  const { setSelectedTab, history, userId, activeGroup } =
+    useContext(GlobalContext);
+  const [totalAmount, setTotalAmount] = useState(0);
+  const [totalShare, setTotalShare] = useState(0);
+  const [totalPaid, setTotalPaid] = useState(0);
+
+  console.log(history);
 
   const handleBack = () => {
     setSelectedTab("activity");
@@ -17,30 +20,28 @@ const Total = () => {
 
   useEffect(() => {
     const totalAmount = history?.reduce(
-      (sum, expense) => sum + expense.amount,
+      (sum, expense) => (!expense.settled ? sum + expense.amount : sum),
       0
     );
-    setTotalAmount(totalAmount)
-
-    const totalShare = history?.reduce((total, transaction) => {
-      if (transaction.payerId === userId) {
-        return total + transaction.amount;
-      } else if (transaction.receiverId === userId) {
-        return total - transaction.amount;
-      } else {
-        return total;
-      }
-    }, 0);
-    setTotalShare(totalShare)
+    setTotalAmount(totalAmount);
 
     const totalPaid = history?.reduce((total, transaction) => {
-      if (transaction.payerId === userId) {
+      if (transaction.receiverId === userId && transaction.settled) {
         return total + transaction.amount;
       } else {
         return total;
       }
     }, 0);
-    setTotalPaid(totalPaid)
+    setTotalPaid(totalPaid);
+
+    const totalShare = history?.reduce((total, transaction) => {
+      if (transaction.payerId === userId && !transaction.settled) {
+        return total + transaction.amount;
+      } else {
+        return total;
+      }
+    }, 0);
+    setTotalShare(totalShare);
   }, [activeGroup]);
 
   return (
