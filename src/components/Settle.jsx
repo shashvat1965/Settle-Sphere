@@ -71,6 +71,7 @@ const Settle = () => {
                 name={item.username}
                 amount={item.amount}
                 ownerId={item.edges["destination"].id}
+                pubKey={item.pubKey}
                 type="owe"
               />
             ))

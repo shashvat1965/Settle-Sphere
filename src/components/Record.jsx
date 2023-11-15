@@ -14,7 +14,8 @@ import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import * as web3 from "@solana/web3.js";
 
 const Record = () => {
-  const { setSelectedTab, settleAccount,activeGroup, token } = useContext(GlobalContext);
+  const { setSelectedTab, settleAccount, activeGroup, token } =
+    useContext(GlobalContext);
   const options = [
     { value: "solana", label: "Solana", image: Solana },
     { value: "bitcoin", label: "Bitcoin", image: Bitcoin },
@@ -40,38 +41,37 @@ const Record = () => {
   const { publicKey, sendTransaction } = useWallet();
 
   const { connection } = useConnection();
-    async function getBalance() {
-      try {
-        const res = await fetch(
-          `https://bits-dvm.org/settlesphere/api/v1/txn/group/${activeGroup}/settle/${settleAccount[0].ownerId}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+  async function settleBalance() {
+    try {
+      const res = await fetch(
+        `https://bits-dvm.org/settlesphere/api/v1/txn/group/${activeGroup}/settle/${settleAccount[0].ownerId}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
-        const data = await res.json();
-        console.log(data);
-      } catch (error) {
-        console.error("Error:", error.message);
-      }
+      const data = await res.json();
+      console.log(data);
+    } catch (error) {
+      console.error("Error:", error.message);
     }
+  }
 
-  console.log(settleAccount)
+  // console.log(settleAccount)
 
   const handleSettle = (e) => {
     event.preventDefault();
-    getBalance();
     const transaction = new web3.Transaction();
     const sendSolInstruction = web3.SystemProgram.transfer({
       fromPubkey: publicKey,
 
-      toPubkey: "395utDE4wdthX3VE2jPKRodK67wbovxztkDKEnDMmbP9",
+      toPubkey: settleAccount[0].pubKey,
 
-      lamports: LAMPORTS_PER_SOL *  0.1,
+      lamports: LAMPORTS_PER_SOL * settleAccount[0].amount,
     });
 
     transaction.add(sendSolInstruction);
@@ -79,9 +79,9 @@ const Record = () => {
     sendTransaction(transaction, connection).then((sig) => {
       console.log(sig);
       setSelectedTab("activity");
+      settleBalance();
     });
   };
-
 
   const handleBack = () => {
     setSelectedTab("settle");
