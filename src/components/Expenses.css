@@ -65,6 +65,12 @@
   }
 }
 
+.sphere-positive{
+  color: #138c40;
+}
+.sphere-negative{
+  color: #fff ;
+}
 .data,
 .got-data,
 .spent-data {
@@ -75,9 +81,8 @@
 .data span,
 .got-data span,
 .spent-data span {
-  color: #fff;
   font-family: "ZonaPro Bold";
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-style: normal;
   font-weight: 700;
   line-height: 1.5rem;
@@ -165,9 +170,7 @@
 .group-name{
     flex-grow: 1;
     margin-left: 2.5rem;
-}
-.spent-data{
-    flex: 1;
+    margin-top: -.5rem;
 }
 @media (max-width: 1300px){
     .expenses-data{

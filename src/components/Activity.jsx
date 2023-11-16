@@ -88,6 +88,7 @@ const Activity = () => {
     };
   });
   const reversedArray = mergedArray?.slice().reverse();
+  // console.log(history)
 
   return (
     <div className="activity-container">

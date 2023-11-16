@@ -12,7 +12,7 @@ const Total = () => {
   const [totalShare, setTotalShare] = useState(0);
   const [totalPaid, setTotalPaid] = useState(0);
 
-  console.log(history);
+  // console.log(history);
 
   const handleBack = () => {
     setSelectedTab("activity");
