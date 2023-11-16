@@ -32,7 +32,7 @@ const Expenses = () => {
         );
 
         const data = await res.json();
-        // console.log(data.message);
+        // console.log(data.lent);
         setLentArray(data.lent);
         setOwedArray(data.owed);
         const totalGotBack = data.lent?.reduce(
@@ -108,7 +108,7 @@ const Expenses = () => {
               <div className="transaction-profile">
                 <img src={TransactionProfile} alt="" />
               </div>
-              <div className="group-name">{item.note}</div>
+              <div className="group-name">{item.edges.belongs_to.name}</div>
               <div className="spent-data">
                 <span>-{item.amount}</span>
                 <img src={Solana} alt="" />
@@ -120,7 +120,7 @@ const Expenses = () => {
               <div className="transaction-profile">
                 <img src={TransactionProfile} alt="" />
               </div>
-              <div className="group-name">{item.note}</div>
+              <div className="group-name">{item.edges.belongs_to.name}</div>
               <div className="spent-data">
                 <span>{item.amount}</span>
                 <img src={Solana} alt="" />
