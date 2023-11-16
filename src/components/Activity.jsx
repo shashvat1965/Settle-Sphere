@@ -16,13 +16,13 @@ const Activity = () => {
     setActiveGroup,
     userId,
     groups,
-    setUsername
+    setUsername,
   } = useContext(GlobalContext);
 
   useEffect(() => {
     async function getUsers() {
       if (activeGroup.length < 0) {
-        setActiveGroup(groups[0].code)
+        setActiveGroup(groups[0].code);
       }
       try {
         const res = await fetch(
@@ -39,7 +39,7 @@ const Activity = () => {
         const data = await res.json();
         setUsers(data.users);
         const userObject = users?.find((user) => user.id === userId);
-        setUsername(userObject?.username)
+        setUsername(userObject?.username);
       } catch (error) {
         console.error("Error:", error.message);
       }
@@ -51,7 +51,7 @@ const Activity = () => {
   useEffect(() => {
     async function getBalance() {
       if (activeGroup.length < 0) {
-        setActiveGroup(groups[0].code)
+        setActiveGroup(groups[0].code);
       }
       try {
         const res = await fetch(
@@ -97,20 +97,20 @@ const Activity = () => {
   return (
     <div className="activity-container">
       {/* <div className="activity-month">October 2023</div> */}
-      {history
-        ? reversedArray.map((item) => (
-            <ActivityItem
-              key={item.id}
-              note={item.note}
-              payer={item.payerId === userId ? "You" : item.payerName}
-              receiver={
-                item.receiverId === userId ? "You" : item.receiverName
-              }
-              amount={item.amount}
-              settled={item.settled}
-            />
-          ))
-        : ""}
+      {history ? (
+        reversedArray.map((item) => (
+          <ActivityItem
+            key={item.id}
+            note={item.note}
+            payer={item.payerId === userId ? "You" : item.payerName}
+            receiver={item.receiverId === userId ? "You" : item.receiverName}
+            amount={item.amount}
+            settled={item.settled}
+          />
+        ))
+      ) : (
+        <div className="no-activity"><span>No transaction history to display.</span></div>
+      )}
     </div>
   );
 };

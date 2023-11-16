@@ -5,13 +5,14 @@ import Solana from "../../public/Solana.svg";
 import GlobalContext from "../context/GlobalContext";
 
 const GroupBox = ({ groupName, groupCode, createdBy }) => {
-  const { setGroup, setActiveGroup, token, setUsers, history } =
+  const { setGroup, setActiveGroup, token, setUsers, history, setSelectedTab } =
     useContext(GlobalContext);
   const [totalAmount, setTotalAmount] = useState(0);
 
   const handleGroup = async () => {
     setGroup(true);
     setActiveGroup(groupCode);
+    setSelectedTab("activity")
 
     try {
       const res = await fetch(
