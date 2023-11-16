@@ -23,7 +23,7 @@ const Group = () => {
         const data = await res.json();
         // console.log(data.message);
         setGroups(data.groups)
-        console.log(groups);
+        // console.log(groups);
       } catch (error) {
         console.error("Error:", error.message);
       }

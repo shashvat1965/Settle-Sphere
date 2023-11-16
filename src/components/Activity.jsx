@@ -109,7 +109,7 @@ const Activity = () => {
           />
         ))
       ) : (
-        <div className="no-activity"><span>No transaction history to display.</span></div>
+        <div className="no-activity"><span>No transaction history available.</span></div>
       )}
     </div>
   );

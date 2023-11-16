@@ -102,32 +102,38 @@ const Expenses = () => {
       </div>
       <div className="transaction">
         <div className="transaction-heading">Transactions</div>
-        <ul className="spendings">
-          {owedArray?.map((item) => (
-            <li className="spent-details">
-              <div className="transaction-profile">
-                <img src={TransactionProfile} alt="" />
-              </div>
-              <div className="group-name">{item.edges.belongs_to.name}</div>
-              <div className="spent-data">
-                <span>-{item.amount}</span>
-                <img src={Solana} alt="" />
-              </div>
-            </li>
-          ))}
-          {lentArray?.map((item) => (
-            <li className="spent-details">
-              <div className="transaction-profile">
-                <img src={TransactionProfile} alt="" />
-              </div>
-              <div className="group-name">{item.edges.belongs_to.name}</div>
-              <div className="spent-data">
-                <span>{item.amount}</span>
-                <img src={Solana} alt="" />
-              </div>
-            </li>
-          ))}
-        </ul>
+        {owedArray.length > 0 || lentArray.length > 0 ? (
+          <ul className="spendings">
+            {owedArray?.map((item) => (
+              <li className="spent-details">
+                <div className="transaction-profile">
+                  <img src={TransactionProfile} alt="" />
+                </div>
+                <div className="group-name">{item.edges.belongs_to.name}</div>
+                <div className="spent-data">
+                  <span>-{item.amount}</span>
+                  <img src={Solana} alt="" />
+                </div>
+              </li>
+            ))}
+            {lentArray?.map((item) => (
+              <li className="spent-details">
+                <div className="transaction-profile">
+                  <img src={TransactionProfile} alt="" />
+                </div>
+                <div className="group-name">{item.edges.belongs_to.name}</div>
+                <div className="spent-data">
+                  <span>{item.amount}</span>
+                  <img src={Solana} alt="" />
+                </div>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div className="no-settled">
+            <span>No completed transactions available.</span>
+          </div>
+        )}
       </div>
     </div>
   );

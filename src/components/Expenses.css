@@ -26,7 +26,7 @@
   position: relative;
   width: 100px; /* Adjust the width and height as needed */
   height: 100px;
-  scale: .7;
+  scale: 0.7;
 }
 
 .purple,
@@ -65,11 +65,11 @@
   }
 }
 
-.sphere-positive{
+.sphere-positive {
   color: #138c40;
 }
-.sphere-negative{
-  color: #fff ;
+.sphere-negative {
+  color: #fff;
 }
 .data,
 .got-data,
@@ -150,7 +150,7 @@
   line-height: normal;
 }
 .spendings {
-    margin-top: 1rem;
+  margin-top: 1rem;
   list-style-type: none;
   color: #fff;
   font-family: "Satoshi";
@@ -167,19 +167,28 @@
   align-items: center;
   margin-top: 2rem;
 }
-.group-name{
-    flex-grow: 1;
-    margin-left: 2.5rem;
-    margin-top: -.5rem;
+.group-name {
+  flex-grow: 1;
+  margin-left: 2.5rem;
+  margin-top: -0.5rem;
 }
-@media (max-width: 1300px){
-    .expenses-data{
-        margin-top: 2rem;
-    }
-    .got-back{
-        padding: .5rem 1.5rem;
-    }
-    .got-data-section span{
-        font-size: 1rem;
-    }
+.no-settled {
+  margin-top: 1rem;
+  color: #767676;
+  font-family: "Open Sans";
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+@media (max-width: 1300px) {
+  .expenses-data {
+    margin-top: 2rem;
+  }
+  .got-back {
+    padding: 0.5rem 1.5rem;
+  }
+  .got-data-section span {
+    font-size: 1rem;
+  }
 }
