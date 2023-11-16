@@ -92,7 +92,7 @@ const Activity = () => {
     };
   });
   const reversedArray = mergedArray?.slice().reverse();
-  console.log(reversedArray)
+  // console.log(reversedArray)
 
   return (
     <div className="activity-container">
