@@ -13,10 +13,11 @@ import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import { clusterApiUrl } from "@solana/web3.js";
 import "@solana/wallet-adapter-react-ui/styles.css";
 import GlobalContext from "./context/GlobalContext";
+import * as buffer from "buffer";
 
 function App() {
   const { isConnected, dashboard } = useContext(GlobalContext);
-
+  window.Buffer = buffer.Buffer;
   const network = WalletAdapterNetwork.Devnet;
   const endpoint = useMemo(() => clusterApiUrl(network), [network]);
 
