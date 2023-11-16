@@ -9,8 +9,16 @@ import { useEffect, useContext } from "react";
 import GlobalContext from "../context/GlobalContext";
 
 const Login = () => {
-  const { setIsConnected, setDashboard, setToken, username, setUsername } =
-    useContext(GlobalContext);
+  const {
+    setIsConnected,
+    setDashboard,
+    setToken,
+    username,
+    setUsername,
+    setUserId,
+  } = useContext(GlobalContext);
+
+  const [ emptyUsername, setEmptyUsername] = useState(false)
 
   const wallet = useWallet();
   const walletModal = useWalletModal();
@@ -61,23 +69,26 @@ const Login = () => {
         );
         async function connectToWallet() {
           try {
-            const res = await fetch("https://bits-dvm.org/settlesphere/api/v1/auth/login", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                name: `${username}`,
-                pubKey: bs58.encode(wallet.publicKey.toBuffer()),
-              }),
-            });
+            const res = await fetch(
+              "https://bits-dvm.org/settlesphere/api/v1/auth/login",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  name: `${username}`,
+                  pubKey: bs58.encode(wallet.publicKey.toBuffer()),
+                }),
+              }
+            );
 
             const data = await res.json();
             // console.log(data.message);
-            // console.log(data)
-            localStorage.setItem("token", data.token)
+            localStorage.setItem("token", data.token);
             setIsConnected(true);
             setToken(data.token);
+            setUserId(data.user["id"]);
           } catch (error) {
             console.error("Error:", error.message);
           }
@@ -90,9 +101,10 @@ const Login = () => {
 
   const handleUsername = (e) => {
     setUsername(e.target.value.trim());
+    setEmptyUsername(false)
   };
   const handleEmptyUsername = () => {
-    alert("Please Enter a Username!");
+    setEmptyUsername(true)
   };
 
   return (
@@ -102,7 +114,7 @@ const Login = () => {
           <div className="heading">
             <img src={SettleSphere} alt="" />
           </div>
-          <div className="login-desc">
+          <div className={emptyUsername ? "login-desc-error" : "login-desc"}>
             <div className="desc-heading">
               Connect Your <span>Wallet</span> to get Started
             </div>
@@ -113,7 +125,7 @@ const Login = () => {
               value={username}
               onChange={handleUsername}
             />
-            <button onClick={handleSignIn} className="desc-btn">
+            <button onClick={username.length > 0  ? handleSignIn : handleEmptyUsername} className="desc-btn">
               Login Through Wallet
             </button>
           </div>

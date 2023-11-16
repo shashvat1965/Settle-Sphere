@@ -28,12 +28,18 @@
   top: 0;
   left: 0;
 }
-.login-desc {
+.login-desc, .login-desc-error {
   width: 70%;
 }
 .login-desc input[type="text"]{
   background-color: transparent;
   border-bottom: 1px solid #f5f2f5;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
+.login-desc-error input[type="text"]{
+  background-color: transparent;
+  border-bottom: 1px solid #d72e2e;
   padding: 0.5rem;
   margin-bottom: 1rem;
 }

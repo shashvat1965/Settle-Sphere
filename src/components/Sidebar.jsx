@@ -42,7 +42,7 @@ const Sidebar = () => {
         <li onClick={handleHome} className={group ? "" : "selected-tab"}>
           <span>Home</span>
         </li>
-        {groups.length > 0 ? (
+        {groups?.length > 0 ? (
           <li onClick={handleGroup} className={!group ? "" : "selected-tab"}>
             <span>Group</span>
           </li>

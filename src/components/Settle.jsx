@@ -54,7 +54,7 @@ const Settle = () => {
   const handleBack = () => {
     setSelectedTab("activity");
   };
-  // console.log(filteredOwesArray);
+  console.log(filteredOwesArray);
 
   return (
     <div className="settle">

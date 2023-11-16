@@ -14,7 +14,9 @@ const Activity = () => {
     setHistory,
     setUserId,
     setActiveGroup,
-    groups
+    userId,
+    groups,
+    setUsername
   } = useContext(GlobalContext);
 
   useEffect(() => {
@@ -36,8 +38,8 @@ const Activity = () => {
 
         const data = await res.json();
         setUsers(data.users);
-        const userObject = users?.find((user) => user.username === username);
-        setUserId(userObject?.id);
+        const userObject = users?.find((user) => user.id === userId);
+        setUsername(userObject?.username)
       } catch (error) {
         console.error("Error:", error.message);
       }
@@ -85,10 +87,12 @@ const Activity = () => {
       note: transaction.note,
       settled: transaction.settled,
       id: transaction.id,
+      payerId: transaction.payerId,
+      receiverId: transaction.receiverId,
     };
   });
   const reversedArray = mergedArray?.slice().reverse();
-  // console.log(history)
+  console.log(reversedArray)
 
   return (
     <div className="activity-container">
@@ -98,9 +102,9 @@ const Activity = () => {
             <ActivityItem
               key={item.id}
               note={item.note}
-              payer={item.payerName === username ? "You" : item.payerName}
+              payer={item.payerId === userId ? "You" : item.payerName}
               receiver={
-                item.receiverName === username ? "You" : item.receiverName
+                item.receiverId === userId ? "You" : item.receiverName
               }
               amount={item.amount}
               settled={item.settled}

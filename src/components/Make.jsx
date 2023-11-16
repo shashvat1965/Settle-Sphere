@@ -10,7 +10,7 @@ import Bitcoin from "../../public/Bitcoin.svg";
 import CustomStyles from "./CustomStyles";
 
 const Make = () => {
-  const { setSelectedTab, users, activeGroup, token, username } =
+  const { setSelectedTab, users, activeGroup, token, username, userId } =
     useContext(GlobalContext);
   const options = [
     { value: "solana", label: "Solana", image: Solana },
@@ -33,24 +33,24 @@ const Make = () => {
     console.log(selectedCrypto.label);
   };
   const handlePayerChange = (selectedOption) => {
-    if (selectedOption.label === username) {
+    if (selectedOption.value === userId) {
       setSelectedPayer(selectedOption);
       setSelectedReceiver(null)
     } else {
       setSelectedPayer(selectedOption);
       setSelectedReceiver(
-        transformedArray.find((option) => option.label === username)
+        transformedArray.find((option) => option.value === userId)
       );
     }
   };
   const handleReceiverChange = (selectedOption) => {
-    if (selectedOption.label === username) {
+    if (selectedOption.value === userId) {
       setSelectedReceiver(selectedOption);
       setSelectedPayer(null)
     } else {
       setSelectedReceiver(selectedOption);
       setSelectedPayer(
-        transformedArray.find((option) => option.label === username)
+        transformedArray.find((option) => option.value === userId)
       );
     }
   };

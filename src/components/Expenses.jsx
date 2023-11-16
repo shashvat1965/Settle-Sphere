@@ -103,7 +103,7 @@ const Expenses = () => {
       <div className="transaction">
         <div className="transaction-heading">Transactions</div>
         <ul className="spendings">
-          {owedArray.map((item) => (
+          {owedArray?.map((item) => (
             <li className="spent-details">
               <div className="transaction-profile">
                 <img src={TransactionProfile} alt="" />
@@ -115,7 +115,7 @@ const Expenses = () => {
               </div>
             </li>
           ))}
-          {lentArray.map((item) => (
+          {lentArray?.map((item) => (
             <li className="spent-details">
               <div className="transaction-profile">
                 <img src={TransactionProfile} alt="" />

@@ -57,7 +57,7 @@ const Group = () => {
           />
         </div>
         <div className="group-box-container">
-          {groups.length > 0
+          {groups?.length > 0
             ? groups
                 .filter((grp) =>
                   grp.name.toLowerCase().includes(searchQuery.toLowerCase())

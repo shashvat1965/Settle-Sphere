@@ -13,7 +13,7 @@ const Dashboard = () => {
     <>
     <div className="dashboard-container">
         <Sidebar />
-        {groups.length > 0 ? group ? (<Tab />) : (<Expenses />) : (<Expenses />)}
+        {groups?.length > 0 ? group ? (<Tab />) : (<Expenses />) : (<Expenses />)}
         <Group />
     </div>
     </>
