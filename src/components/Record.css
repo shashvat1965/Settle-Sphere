@@ -62,10 +62,11 @@
     display: flex;
     justify-content: center;
     margin-top: 2rem;
+    gap: 1rem;
 }
 .record-button {
   cursor: pointer;
-  padding: 0.25rem 3rem;
+  padding: 0.25rem 2rem;
   border: none;
   outline: none;
   border-radius: 8px;

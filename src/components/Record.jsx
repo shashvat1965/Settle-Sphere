@@ -86,6 +86,11 @@ const Record = () => {
   const handleBack = () => {
     setSelectedTab("settle");
   };
+
+  const handleCrossChain = () => {
+    window.open('/widget', '_blank', 'width=360, height=640');
+  }
+
   return (
     <div className="record">
       <div className="settle-heading">
@@ -123,7 +128,10 @@ const Record = () => {
         </div>
         <div className="record-button-container">
           <button onClick={handleSettle} className="record-button">
-            Settle
+            Settle with SOL
+          </button>
+          <button onClick={handleCrossChain} className="record-button">
+            Add SOL
           </button>
         </div>
       </div>
