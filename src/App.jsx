@@ -14,6 +14,8 @@ import { clusterApiUrl } from "@solana/web3.js";
 import "@solana/wallet-adapter-react-ui/styles.css";
 import GlobalContext from "./context/GlobalContext";
 import * as buffer from "buffer";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Widget from "./Widget.jsx";
 
 function App() {
   const { isConnected, dashboard } = useContext(GlobalContext);
@@ -26,13 +28,31 @@ function App() {
 
   return (
     <>
-      <ConnectionProvider endpoint={endpoint}>
-        <WalletProvider wallets={wallets} autoConnect={true}>
-          <WalletModalProvider>
-            {isConnected && token ? dashboard ? <Dashboard /> : <Home /> : <Login />}
-          </WalletModalProvider>
-        </WalletProvider>
-      </ConnectionProvider>
+      <Router>
+        <ConnectionProvider endpoint={endpoint}>
+          <WalletProvider wallets={wallets} autoConnect={true}>
+            <WalletModalProvider>
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    isConnected && token ? (
+                      dashboard ? (
+                        <Dashboard />
+                      ) : (
+                        <Home />
+                      )
+                    ) : (
+                      <Login />
+                    )
+                  }
+                />
+                <Route path="/widget" element={<Widget />} />
+              </Routes>
+            </WalletModalProvider>
+          </WalletProvider>
+        </ConnectionProvider>
+      </Router>
     </>
   );
 }

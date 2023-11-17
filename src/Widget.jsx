@@ -9,7 +9,7 @@ export default function Widget() {
       mayan.current = mayanInstance
       const config = {
         appIdentity: {
-          name: 'My Project',
+          name: 'Settle Sphere',
           icon: './logo.png',
           uri: 'https://myproject.io',
         }
