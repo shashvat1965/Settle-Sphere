@@ -88,7 +88,12 @@ const Record = () => {
   };
 
   const handleCrossChain = () => {
-    window.open('/widget', '_blank', 'width=360, height=640');
+    // const selectedCryptoValue = selectedCrypto ? selectedCrypto.value : "";
+    const amountValue = amount || settleAccount[0].amount; 
+    const destinationWallet = settleAccount[0].pubKey
+    const queryString = `?dest=${destinationWallet}&amount=${amountValue}`;
+    const url = `/widget${queryString}`;
+    window.open(url, '_blank', 'width=360, height=640');
   }
 
   return (
