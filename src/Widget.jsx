@@ -20,11 +20,12 @@ export default function Widget() {
           uri: "https://myproject.io",
         },
         destinationChains: ["solana"],
-        destinationWallets: { 
+        destinationWallets: {
           solana: destParam,
-      },
+        },
       };
       MayanSwap.init("mayanContainer", config);
+      MayanSwap.setSwapCompleteListener((callback) => console.log(callback));
     })();
     return () => {
       if (mayan.current && mayan.current.destroy) {

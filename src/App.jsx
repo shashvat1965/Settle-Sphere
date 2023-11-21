@@ -16,6 +16,7 @@ import GlobalContext from "./context/GlobalContext";
 import * as buffer from "buffer";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Widget from "./Widget.jsx";
+import CrossChain from "./CrossChain.jsx";
 
 function App() {
   const { isConnected, dashboard } = useContext(GlobalContext);
@@ -47,7 +48,7 @@ function App() {
                     )
                   }
                 />
-                <Route path="/widget" element={<Widget />} />
+                <Route path="/widget" element={<CrossChain />} />
               </Routes>
             </WalletModalProvider>
           </WalletProvider>
