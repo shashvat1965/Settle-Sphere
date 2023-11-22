@@ -28,16 +28,17 @@
   top: 0;
   left: 0;
 }
-.login-desc, .login-desc-error {
+.login-desc,
+.login-desc-error {
   width: 70%;
 }
-.login-desc input[type="text"]{
+.login-desc input[type="text"] {
   background-color: transparent;
   border-bottom: 1px solid #f5f2f5;
   padding: 0.5rem;
   margin-bottom: 1rem;
 }
-.login-desc-error input[type="text"]{
+.login-desc-error input[type="text"] {
   background-color: transparent;
   border-bottom: 1px solid #d72e2e;
   padding: 0.5rem;
@@ -52,8 +53,8 @@
   letter-spacing: 3px;
   margin: 2rem 0;
 }
-.desc-heading span{
-    color:  #CF41E8;
+.desc-heading span {
+  color: #cf41e8;
 }
 .desc-btn {
   cursor: pointer;
@@ -68,4 +69,14 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+}
+.mayan {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-weight: 500;
+  font-size: 1.5rem;
+  line-height: 27px;
+  font-family: "Zonapro Bold";
+  color: rgb(102, 112, 121);
 }

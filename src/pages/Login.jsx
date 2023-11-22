@@ -7,7 +7,7 @@ import { useWallet } from "@solana/wallet-adapter-react";
 import bs58 from "bs58";
 import { useEffect, useContext } from "react";
 import GlobalContext from "../context/GlobalContext";
-
+import Lion from '../../public/GroupPicture.png'
 const Login = () => {
   const {
     setIsConnected,
@@ -19,6 +19,8 @@ const Login = () => {
   } = useContext(GlobalContext);
 
   const [ emptyUsername, setEmptyUsername] = useState(false)
+  const [ loginUser, setLoginUser ] = useState(username)
+
 
   const wallet = useWallet();
   const walletModal = useWalletModal();
@@ -101,13 +103,13 @@ const Login = () => {
 
   const handleUsername = (e) => {
     setUsername(e.target.value.trim());
+    setLoginUser(e.target.value.trim());
     setEmptyUsername(false)
   };
   const handleEmptyUsername = () => {
     setEmptyUsername(true)
   };
   localStorage.setItem("username", username)
-
   return (
     <>
       <div className="login-container">
@@ -123,7 +125,7 @@ const Login = () => {
               className="login-username"
               type="text"
               placeholder="Enter a Username"
-              value={username}
+              value={loginUser}
               onChange={handleUsername}
             />
             <button onClick={username.length > 0  ? handleSignIn : handleEmptyUsername} className="desc-btn">
@@ -132,6 +134,9 @@ const Login = () => {
           </div>
         </div>
         <div className="login-right">
+          <div className="mayan">
+            <span>Powered by Mayan</span>
+          </div>
           <div className="login-asset">
             <img src={LoginAsset} alt="" />
           </div>

@@ -25,6 +25,7 @@ function App() {
 
   const wallets = useMemo(() => [new PhantomWalletAdapter()], []);
   const token = localStorage.getItem("token");
+  const username = localStorage.getItem("username")
 
   return (
     <>
@@ -36,7 +37,7 @@ function App() {
                 <Route
                   path="/"
                   element={
-                    isConnected && token ? (
+                    isConnected && token && username ? (
                       dashboard ? (
                         <Dashboard />
                       ) : (
