@@ -106,6 +106,7 @@ const Login = () => {
   const handleEmptyUsername = () => {
     setEmptyUsername(true)
   };
+  localStorage.setItem("username", username)
 
   return (
     <>

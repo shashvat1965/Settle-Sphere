@@ -19,6 +19,9 @@ const Activity = () => {
     setUsername,
   } = useContext(GlobalContext);
 
+  const [isLoading, setIsLoading] = useState(true);
+
+
   useEffect(() => {
     async function getUsers() {
       if (activeGroup.length < 0) {
@@ -69,6 +72,7 @@ const Activity = () => {
         // console.log(users);
         // console.log(data.txn_history);
         setHistory(data.txn_history);
+        setIsLoading(false)
       } catch (error) {
         console.error("Error:", error.message);
       }
@@ -95,23 +99,35 @@ const Activity = () => {
   // console.log(reversedArray)
 
   return (
-    <div className="activity-container">
-      {/* <div className="activity-month">October 2023</div> */}
-      {history ? (
-        reversedArray.map((item) => (
-          <ActivityItem
-            key={item.id}
-            note={item.note}
-            payer={item.payerId === userId ? "You" : item.payerName}
-            receiver={item.receiverId === userId ? "You" : item.receiverName}
-            amount={item.amount}
-            settled={item.settled}
-          />
-        ))
+    <>
+      {isLoading ? (
+        <div className="loader-container-settle">
+          <span class="loader"></span>
+        </div>
       ) : (
-        <div className="no-activity"><span>No transaction history available.</span></div>
+        <div className="activity-container">
+          {/* <div className="activity-month">October 2023</div> */}
+          {history ? (
+            reversedArray.map((item) => (
+              <ActivityItem
+                key={item.id}
+                note={item.note}
+                payer={item.payerId === userId ? "You" : item.payerName}
+                receiver={
+                  item.receiverId === userId ? "You" : item.receiverName
+                }
+                amount={item.amount}
+                settled={item.settled}
+              />
+            ))
+          ) : (
+            <div className="no-activity">
+              <span>No transaction history available.</span>
+            </div>
+          )}
+        </div>
       )}
-    </div>
+    </>
   );
 };
 

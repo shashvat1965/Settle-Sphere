@@ -23,20 +23,20 @@ const Tab = () => {
   } = useContext(GlobalContext);
   const [totalAmount, setTotalAmount] = useState(0);
   const [currentGroup, setCurrentGroup] = useState([groups[0]]);
+  const [isLoading, setIsLoading] = useState(true);
+
   if (activeGroup.length < 0) {
-    setActiveGroup(groups[0].code)
+    setActiveGroup(groups[0].code);
   }
 
   // console.log(activeGroup)
 
-
   useEffect(() => {
     let isMounted = true;
     if (activeGroup === "") {
-      setCurrentGroup(groups[0])
-    }
-    else{
-      setCurrentGroup(groups.find((group) => group.code === activeGroup))
+      setCurrentGroup(groups[0]);
+    } else {
+      setCurrentGroup(groups.find((group) => group.code === activeGroup));
     }
 
     async function getBalance() {
@@ -53,6 +53,7 @@ const Tab = () => {
         );
 
         const data = await res.json();
+        setIsLoading(false);
 
         let owes = 0;
         let receives = 0;
@@ -80,6 +81,7 @@ const Tab = () => {
     }
 
     getBalance();
+    setTimeout(() => {}, 1000);
 
     return () => {
       isMounted = false;
@@ -133,66 +135,74 @@ const Tab = () => {
   };
 
   return (
-    <div className="tab">
-      <div className="tab-header">
-        <div className="tab-profile-picture">
-          <img src={Profile} alt="" draggable={false} loading="lazy" />
+    <>
+      {isLoading ? (
+        <div className="loader-container-tab">
+          <span class="loader"></span>
         </div>
-        <div className="tab-profile-data">
-          <div className="tab-heading">{currentGroup.name}</div>
-          <div className="tab-code">
-            {currentGroup.code}
-            <CopyToClipboard text={currentGroup.code}>
-              <img src={Copy} alt="" />
-            </CopyToClipboard>
+      ) : (
+        <div className="tab">
+          <div className="tab-header">
+            <div className="tab-profile-picture">
+              <img src={Profile} alt="" draggable={false} loading="lazy" />
+            </div>
+            <div className="tab-profile-data">
+              <div className="tab-heading">{currentGroup.name}</div>
+              <div className="tab-code">
+                {currentGroup.code}
+                <CopyToClipboard text={currentGroup.code}>
+                  <img src={Copy} alt="" />
+                </CopyToClipboard>
+              </div>
+              <div className="tab-created">
+                created by <span>{currentGroup.created_by}</span>
+              </div>
+              <div className="tab-last-bill">
+                created on <span>{dateObject}</span>
+              </div>
+              <div className="tab-group-owed">
+                You {totalAmount > 0 ? "are Owed" : "Owe"} :
+                <span> {Math.abs(totalAmount)} </span>
+                <img src={Solana} alt="" />
+              </div>
+            </div>
           </div>
-          <div className="tab-created">
-            created by <span>{currentGroup.created_by}</span>
+          <div className="tab-buttons">
+            <div
+              className={`tab-button-item ${
+                selectedTab === "settle" || selectedTab === "record"
+                  ? "selected-button"
+                  : ""
+              }`}
+              onClick={() => handleTabClick("settle")}
+            >
+              Settle Up
+            </div>
+            <div
+              className={`tab-button-item ${
+                selectedTab === "totals" ? "selected-button" : ""
+              }`}
+              onClick={() => handleTabClick("totals")}
+            >
+              Totals
+            </div>
+            <div
+              className={`tab-button-item ${
+                selectedTab === "make" ? "selected-button" : ""
+              }`}
+              onClick={() => handleTabClick("make")}
+            >
+              Create Transaction
+            </div>
           </div>
-          <div className="tab-last-bill">
-            created on <span>{dateObject}</span>
-          </div>
-          <div className="tab-group-owed">
-            You {totalAmount > 0 ? "are Owed" : "Owe"} :
-            <span> {Math.abs(totalAmount)} </span>
-            <img src={Solana} alt="" />
-          </div>
+          {selectedTab === "activity" && <Activity />}
+          {selectedTab === "totals" && <Total />}
+          {selectedTab === "settle" && <Settle />}
+          {selectedTab === "record" && <Record />}
+          {selectedTab === "make" && <Make />}
         </div>
-      </div>
-      <div className="tab-buttons">
-        <div
-          className={`tab-button-item ${
-            selectedTab === "settle" || selectedTab === "record"
-              ? "selected-button"
-              : ""
-          }`}
-          onClick={() => handleTabClick("settle")}
-        >
-          Settle Up
-        </div>
-        <div
-          className={`tab-button-item ${
-            selectedTab === "totals" ? "selected-button" : ""
-          }`}
-          onClick={() => handleTabClick("totals")}
-        >
-          Totals
-        </div>
-        <div
-          className={`tab-button-item ${
-            selectedTab === "make" ? "selected-button" : ""
-          }`}
-          onClick={() => handleTabClick("make")}
-        >
-          Create Transaction
-        </div>
-      </div>
-      {selectedTab === "activity" && <Activity />}
-      {selectedTab === "totals" && <Total />}
-      {selectedTab === "settle" && <Settle />}
-      {selectedTab === "record" && <Record />}
-      {selectedTab === "make" && <Make />}
-    </div>
+      )}
+    </>
   );
 };
 

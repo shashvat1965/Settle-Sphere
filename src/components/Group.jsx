@@ -8,21 +8,26 @@ const Group = () => {
   const { token, create, setCreate, join, setJoin, groups, setGroups } =
     useContext(GlobalContext);
   const [searchQuery, setSearchQuery] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function getGroups() {
       try {
-        const res = await fetch("https://bits-dvm.org/settlesphere/api/v1/groups", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const res = await fetch(
+          "https://bits-dvm.org/settlesphere/api/v1/groups",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
         const data = await res.json();
         // console.log(data.message);
-        setGroups(data.groups)
+        setGroups(data.groups);
+        setIsLoading(false)
         // console.log(groups);
       } catch (error) {
         console.error("Error:", error.message);
@@ -57,22 +62,28 @@ const Group = () => {
             onChange={handleSearch}
           />
         </div>
-        <div className="group-box-container">
-          {groups?.length > 0
-            ? groups
-                .filter((grp) =>
-                  grp.name.toLowerCase().includes(searchQuery.toLowerCase())
-                )
-                .map((grp) => (
-                  <GroupBox
-                    key={grp.id}
-                    groupName={grp.name}
-                    groupCode={grp.code}
-                    createdBy={grp.created_by}
-                  />
-                ))
-            : ""}
-        </div>{" "}
+        {isLoading ? (
+          <div className="loader-container-group">
+            <span class="loader"></span>
+          </div>
+        ) : (
+          <div className="group-box-container">
+            {groups?.length > 0
+              ? groups
+                  .filter((grp) =>
+                    grp.name.toLowerCase().includes(searchQuery.toLowerCase())
+                  )
+                  .map((grp) => (
+                    <GroupBox
+                      key={grp.id}
+                      groupName={grp.name}
+                      groupCode={grp.code}
+                      createdBy={grp.created_by}
+                    />
+                  ))
+              : ""}
+          </div>
+        )}
         <div className="create-join-container">
           <button onClick={handleCreate} className="create">
             Create Group

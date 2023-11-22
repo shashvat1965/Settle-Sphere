@@ -22,3 +22,10 @@
     overflow-y: scroll;
     height: 40vh;
 }
+.loader-container-settle{
+    height: 40vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

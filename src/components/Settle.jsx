@@ -9,6 +9,7 @@ const Settle = () => {
     useContext(GlobalContext);
   const [owes, setOwes] = useState([]);
   const [receives, setReceives] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function getBalance() {
@@ -28,6 +29,7 @@ const Settle = () => {
         // console.log(data)
         setOwes(data.txns?.owes);
         setReceives(data.txns?.receives);
+        setIsLoading(false)
       } catch (error) {
         console.error("Error:", error.message);
       }
@@ -62,32 +64,38 @@ const Settle = () => {
         <img src={BackBtn} alt="" onClick={handleBack} />
         <span>Select a Balance to Settle</span>
       </div>
-      <div className="settle-container">
-        {filteredOwesArray.length > 0
-          ? filteredOwesArray.map((item) => (
-              <SettleAccount
-                id={item.id}
-                key={item.id}
-                name={item.username}
-                amount={item.amount}
-                ownerId={item.edges["destination"].id}
-                pubKey={item.pubKey}
-                type="owe"
-              />
-            ))
-          : ""}
-        {filteredReceivesArray.length > 0
-          ? filteredReceivesArray.map((item) => (
-              <SettleAccount
-                id={item.id}
-                key={item.id}
-                name={item.username}
-                amount={item.amount}
-                type="receives"
-              />
-            ))
-          : ""}
-      </div>
+      {isLoading ? (
+        <div className="loader-container-settle">
+          <span class="loader"></span>
+        </div>
+      ) : (
+        <div className="settle-container">
+          {filteredOwesArray.length > 0
+            ? filteredOwesArray.map((item) => (
+                <SettleAccount
+                  id={item.id}
+                  key={item.id}
+                  name={item.username}
+                  amount={item.amount}
+                  ownerId={item.edges["destination"].id}
+                  pubKey={item.pubKey}
+                  type="owe"
+                />
+              ))
+            : ""}
+          {filteredReceivesArray.length > 0
+            ? filteredReceivesArray.map((item) => (
+                <SettleAccount
+                  id={item.id}
+                  key={item.id}
+                  name={item.username}
+                  amount={item.amount}
+                  type="receives"
+                />
+              ))
+            : ""}
+        </div>
+      )}
     </div>
   );
 };

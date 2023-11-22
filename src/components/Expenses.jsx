@@ -16,6 +16,7 @@ const Expenses = () => {
   const [sphere, setSphere] = useState(0);
   const [lentArray, setLentArray] = useState([]);
   const [owedArray, setOwedArray] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function getExpenses() {
@@ -46,6 +47,7 @@ const Expenses = () => {
         );
         setTotallyOwed(totalOwed);
         setSphere(totalGotBack - totalOwed);
+        setIsLoading(false)
       } catch (error) {
         console.error("Error:", error.message);
       }
@@ -59,82 +61,94 @@ const Expenses = () => {
         <span>Expenses</span>
         <span></span>
       </div>
-      <div className="expenses-data">
-        <div className="expenses-asset">
-          <img className="purple" src={Purple} alt="" />
-          <img className="green" src={Green} alt="" />
-          <img className="circle" src={Circle} alt="" />
-          <div className="data">
-            <span
-              className={sphere > 0 ? "sphere-positive" : "sphere-negative"}
-            >
-              {sphere}
-            </span>
-            <img src={Solana} alt="" />
-          </div>
+      {isLoading ? (
+        <div className="loader-container">
+          <span class="loader"></span>
         </div>
-      </div>
-      <div className="expenses-balance">
-        <div className="got-back">
-          <div className="got-arrow">
-            <img src={Got} alt="" />
-          </div>
-          <div className="got-data-section">
-            <span>Got Back</span>
-            <div className="got-data">
-              <span>{gotBack}</span>
-              <img src={Solana} alt="" />
+      ) : (
+        <div className="expenses-after-load">
+          <div className="expenses-data">
+            <div className="expenses-asset">
+              <img className="purple" src={Purple} alt="" />
+              <img className="green" src={Green} alt="" />
+              <img className="circle" src={Circle} alt="" />
+              <div className="data">
+                <span
+                  className={sphere > 0 ? "sphere-positive" : "sphere-negative"}
+                >
+                  {sphere}
+                </span>
+                <img src={Solana} alt="" />
+              </div>
             </div>
           </div>
-        </div>
-        <div className="owned">
-          <div className="got-arrow owned-arrow">
-            <img src={Owned} alt="" />
-          </div>
-          <div className="got-data-section">
-            <span>Totally Owed</span>
-            <div className="got-data">
-              <span>{totallyOwed}</span>
-              <img src={Solana} alt="" />
+          <div className="expenses-balance">
+            <div className="got-back">
+              <div className="got-arrow">
+                <img src={Got} alt="" />
+              </div>
+              <div className="got-data-section">
+                <span>Got Back</span>
+                <div className="got-data">
+                  <span>{gotBack}</span>
+                  <img src={Solana} alt="" />
+                </div>
+              </div>
+            </div>
+            <div className="owned">
+              <div className="got-arrow owned-arrow">
+                <img src={Owned} alt="" />
+              </div>
+              <div className="got-data-section">
+                <span>Totally Owed</span>
+                <div className="got-data">
+                  <span>{totallyOwed}</span>
+                  <img src={Solana} alt="" />
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div className="transaction">
-        <div className="transaction-heading">Transactions</div>
-        {owedArray.length > 0 || lentArray.length > 0 ? (
-          <ul className="spendings">
-            {owedArray?.map((item) => (
-              <li key={item.id} className="spent-details">
-                <div className="transaction-profile">
-                  <img src={TransactionProfile} alt="" />
-                </div>
-                <div className="group-name">{item.edges.belongs_to.name}</div>
-                <div className="spent-data">
-                  <span>-{item.amount}</span>
-                  <img src={Solana} alt="" />
-                </div>
-              </li>
-            ))}
-            {lentArray?.map((item) => (
-              <li key={item.id} className="spent-details">
-                <div className="transaction-profile">
-                  <img src={TransactionProfile} alt="" />
-                </div>
-                <div className="group-name">{item.edges.belongs_to.name}</div>
-                <div className="spent-data">
-                  <span>{item.amount}</span>
-                  <img src={Solana} alt="" />
-                </div>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <div className="no-settled">
-            <span>No completed transactions available.</span>
+          <div className="transaction">
+            <div className="transaction-heading">Transactions</div>
+            {owedArray.length > 0 || lentArray.length > 0 ? (
+              <ul className="spendings">
+                {owedArray?.map((item) => (
+                  <li key={item.id} className="spent-details">
+                    <div className="transaction-profile">
+                      <img src={TransactionProfile} alt="" />
+                    </div>
+                    <div className="group-name">
+                      {item.edges.belongs_to.name}
+                    </div>
+                    <div className="spent-data">
+                      <span>-{item.amount}</span>
+                      <img src={Solana} alt="" />
+                    </div>
+                  </li>
+                ))}
+                {lentArray?.map((item) => (
+                  <li key={item.id} className="spent-details">
+                    <div className="transaction-profile">
+                      <img src={TransactionProfile} alt="" />
+                    </div>
+                    <div className="group-name">
+                      {item.edges.belongs_to.name}
+                    </div>
+                    <div className="spent-data">
+                      <span>{item.amount}</span>
+                      <img src={Solana} alt="" />
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <div className="no-settled">
+                <span>No completed transactions available.</span>
+              </div>
+            )}
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };
