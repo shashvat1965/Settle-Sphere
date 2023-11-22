@@ -1,5 +1,7 @@
 .record {
   margin-top: 1rem;
+  overflow-y: scroll;
+  height: 50vh;
 }
 .record-data {
   margin-top: 2rem;
@@ -61,12 +63,15 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    flex-direction: column;
     margin-top: 2rem;
     gap: 1rem;
+    align-items: center;
 }
 .record-button {
+  width: 40%;
   cursor: pointer;
-  padding: 0.25rem 2rem;
+  padding: 0.25rem 1.5rem;
   border: none;
   outline: none;
   border-radius: 8px;

@@ -90,7 +90,7 @@ const Record = () => {
   const handleCrossChain = () => {
     // const selectedCryptoValue = selectedCrypto ? selectedCrypto.value : "";
     const amountValue = amount || settleAccount[0].amount; 
-    const destinationWallet = settleAccount[0].pubKey
+    const destinationWallet = publicKey;
     const queryString = `?dest=${destinationWallet}&amount=${amountValue}`;
     const url = `/widget${queryString}`;
     window.open(url, '_blank', 'width=360, height=640');
