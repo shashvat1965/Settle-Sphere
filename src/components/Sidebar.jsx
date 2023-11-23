@@ -14,7 +14,7 @@ const Sidebar = () => {
     setIsConnected(false);
     disconnect();
     localStorage.removeItem("pubKey");
-    localStorage.removeItem("username");
+    // localStorage.removeItem("username");
     localStorage.removeItem("token")
     setSelectedTab("activity");
     setGroup(false)
