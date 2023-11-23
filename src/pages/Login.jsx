@@ -140,6 +140,9 @@ const Login = () => {
           <div className="login-asset">
             <img src={LoginAsset} alt="" />
           </div>
+          <div className="opaque-image" style={{opacity: 0, position: "absolute", top: '50%', left: '30%', zIndex: -1}}>
+            <img src={Lion} alt="" />
+          </div>
         </div>
       </div>
     </>
