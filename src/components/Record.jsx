@@ -78,8 +78,12 @@ const Record = () => {
 
     sendTransaction(transaction, connection).then((sig) => {
       console.log(sig);
-      setSelectedTab("activity");
-      settleBalance();
+      if (sig) {
+        settleBalance();
+        setSelectedTab("activity");
+      } else {
+        console.error("Transaction failed.");
+      }
     });
   };
 
@@ -89,12 +93,12 @@ const Record = () => {
 
   const handleCrossChain = () => {
     // const selectedCryptoValue = selectedCrypto ? selectedCrypto.value : "";
-    const amountValue = amount || settleAccount[0].amount; 
+    const amountValue = amount || settleAccount[0].amount;
     const destinationWallet = publicKey;
     const queryString = `?dest=${destinationWallet}&amount=${amountValue}`;
     const url = `/widget${queryString}`;
-    window.open(url, '_blank', 'width=360, height=640');
-  }
+    window.open(url, "_blank", "width=360, height=640");
+  };
 
   return (
     <div className="record">
