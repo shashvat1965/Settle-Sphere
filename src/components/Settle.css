@@ -1,5 +1,5 @@
-.settle{
-    margin-top: 1rem;
+.settle {
+  margin-top: 1rem;
 }
 .settle-heading {
   color: #fff;
@@ -11,21 +11,30 @@
   display: flex;
   align-items: center;
 }
-.settle-heading img{
-    cursor: pointer;
+.settle-heading img {
+  cursor: pointer;
 }
-.settle-heading span{
-    margin-left: 1.5rem;
+.settle-heading span {
+  margin-left: 1.5rem;
 }
-.settle-container{
-    margin-top: 1rem;
-    overflow-y: scroll;
-    height: 40vh;
+.settle-container {
+  margin-top: 1rem;
+  overflow-y: scroll;
+  height: 40vh;
 }
-.loader-container-settle{
-    height: 40vh;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.loader-container-settle {
+  height: 40vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.no-settlements {
+  color: #767676;
+  font-family: "Open Sans";
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-top: 1rem;
+}

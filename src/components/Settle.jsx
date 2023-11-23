@@ -29,7 +29,7 @@ const Settle = () => {
         // console.log(data)
         setOwes(data.txns?.owes);
         setReceives(data.txns?.receives);
-        setIsLoading(false)
+        setIsLoading(false);
       } catch (error) {
         console.error("Error:", error.message);
       }
@@ -68,7 +68,7 @@ const Settle = () => {
         <div className="loader-container-settle">
           <span class="loader"></span>
         </div>
-      ) : (
+      ) : filteredOwesArray && filteredReceivesArray ? (
         <div className="settle-container">
           {filteredOwesArray.length > 0
             ? filteredOwesArray.map((item) => (
@@ -83,18 +83,24 @@ const Settle = () => {
                 />
               ))
             : ""}
-          {filteredReceivesArray.length > 0
-            ? filteredReceivesArray.map((item) => (
-                <SettleAccount
-                  id={item.id}
-                  key={item.id}
-                  name={item.username}
-                  amount={item.amount}
-                  type="receives"
-                />
-              ))
-            : ""}
+          {filteredReceivesArray.length > 0 ? (
+            filteredReceivesArray.map((item) => (
+              <SettleAccount
+                id={item.id}
+                key={item.id}
+                name={item.username}
+                amount={item.amount}
+                type="receives"
+              />
+            ))
+          ) : (
+            <div className="no-settlements">
+              <span>No outstanding settlements available.</span>
+            </div>
+          )}
         </div>
+      ) : (
+        ""
       )}
     </div>
   );
