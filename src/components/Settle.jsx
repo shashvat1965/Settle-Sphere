@@ -82,8 +82,12 @@ const Settle = () => {
                   type="owe"
                 />
               ))
-            : ""}
-          {filteredReceivesArray.length > 0 ? (
+            : filteredReceivesArray.length === 0 && (
+                <div className="no-settlements">
+                  <span>No outstanding settlements available.</span>
+                </div>
+              )}
+          {filteredReceivesArray.length > 0 &&
             filteredReceivesArray.map((item) => (
               <SettleAccount
                 id={item.id}
@@ -92,12 +96,7 @@ const Settle = () => {
                 amount={item.amount}
                 type="receives"
               />
-            ))
-          ) : (
-            <div className="no-settlements">
-              <span>No outstanding settlements available.</span>
-            </div>
-          )}
+            ))}
         </div>
       ) : (
         ""
