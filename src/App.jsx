@@ -37,7 +37,7 @@ function App() {
                 <Route
                   path="/"
                   element={
-                    isConnected && token && username ? (
+                    isConnected && token && username !== 'undefined' ? (
                       dashboard ? (
                         <Dashboard />
                       ) : (

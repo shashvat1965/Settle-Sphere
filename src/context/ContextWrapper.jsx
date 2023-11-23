@@ -14,16 +14,17 @@ export default function ContextWrapper(props) {
   const [users, setUsers] = useState([]);
   const [userId, setUserId] = useState(1);
   const [settleAccount, setSettleAccount] = useState([]);
+  const [history, setHistory] = useState([]);
+
   
   const [username, setUsername] = useState(() => {
     const storedUsername = localStorage.getItem('username');
-    return storedUsername || ""; 
+    return storedUsername === 'undefined' ? "" : storedUsername; 
   });
-  const [history, setHistory] = useState([]);
 
-  useEffect(() => {
-    localStorage.setItem('username', username);
-  }, [username]);
+  // useEffect(() => {
+  //   localStorage.setItem('username', username);
+  // }, [username]);
 
   return (
     <GlobalContext.Provider
