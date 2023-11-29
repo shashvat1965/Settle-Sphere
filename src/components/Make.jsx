@@ -32,11 +32,11 @@ const Make = () => {
   const [error, setError] = useState("");
   const [activeUserId, setActiveUserId] = useState(userId);
   const [selectedUsers, setSelectedUsers] = useState({});
-  console.log(selectedUsers);
+  // console.log(selectedUsers);
 
   const handleCryptoChange = (selectedOption) => {
     setSelectedCrypto(selectedOption);
-    console.log(selectedCrypto.label);
+    // console.log(selectedCrypto.label);
   };
   const handlePayerChange = (selectedOption) => {
     if (selectedOption.value === userId) {
@@ -127,7 +127,7 @@ const Make = () => {
 
             if (trueSelectedUsers.length > 0) {
               const totalSelectedUsers = trueSelectedUsers.length;
-              const amountPerUser = parseInt(amount) / totalSelectedUsers;
+              const amountPerUser = (parseFloat(amount) / totalSelectedUsers).toFixed(2);
 
               const transactionsPromises = users.map(async (user) => {
                 if (selectedUsers[user.id]) {
@@ -189,7 +189,7 @@ const Make = () => {
             const currentUserId = user.id;
 
             if (currentUserId !== activeUserId) {
-              const transactionAmount = parseInt(userInputs[user.id]);
+              const transactionAmount = parseFloat(userInputs[user.id]).toFixed(2);
               const receiverId = user.id;
               const transactionData = {
                 lender: receiverId,
