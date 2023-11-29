@@ -4,6 +4,7 @@ import ActivityIcon from "../../public/Activity.png";
 import Solana from "../../public/Solana.svg";
 
 const ActivityItem = ({ note, payer, receiver, amount, settled }) => {
+  const fixedAmount = amount.toFixed(2)
   return (
     <div className="activity-item">
       {/* <div className="activity-item-month">
@@ -17,7 +18,7 @@ const ActivityItem = ({ note, payer, receiver, amount, settled }) => {
         <div className="activity-settled">
           <span className="settled-payer">{receiver}</span> Paid{" "}
           <span className="settled-amount">
-            {amount} <img src={Solana} alt="" />
+            {fixedAmount} <img src={Solana} alt="" />
           </span>{" "}
           To <span className="settled-receiver">{payer}</span>
         </div>
@@ -28,7 +29,7 @@ const ActivityItem = ({ note, payer, receiver, amount, settled }) => {
             <div className="activity-data">
               <span className="activity-data-name">{receiver}</span>
               <span className="activity-data-logic">Borrowed</span>
-              <span className="activity-data-amount">{amount}</span>
+              <span className="activity-data-amount">{fixedAmount}</span>
               <span className="activity-data-currency">
                 <img src={Solana} alt="" />
               </span>
@@ -37,7 +38,7 @@ const ActivityItem = ({ note, payer, receiver, amount, settled }) => {
             <div className="activity-data">
               <span className="activity-data-name">{payer}</span>
               <span className="activity-data-logic">Paid</span>
-              <span className="activity-data-amount">{amount}</span>
+              <span className="activity-data-amount">{fixedAmount}</span>
               <span className="activity-data-currency">
                 <img src={Solana} alt="" />
               </span>
@@ -58,7 +59,7 @@ const ActivityItem = ({ note, payer, receiver, amount, settled }) => {
           )}
           {payer === "You" || receiver === "You" ? (
             <div className="activity-type-data">
-              <span>{amount}</span>
+              <span>{fixedAmount}</span>
               <img src={Solana} alt="" />
             </div>
           ) : (

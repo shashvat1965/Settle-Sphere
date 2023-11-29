@@ -158,7 +158,7 @@ const Tab = () => {
                 created by <span>{currentGroup.created_by}</span>
               </div>
               <div className="tab-last-bill">
-                created on <span>23rd Nov 2023</span>
+                created on <span>30th Nov 2023</span>
               </div>
               <div className="tab-group-owed">
                 You {totalAmount > 0 ? "are Owed" : "Owe"} :

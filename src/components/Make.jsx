@@ -87,6 +87,7 @@ const Make = () => {
   };
 
   const [userInputs, setUserInputs] = useState({});
+  
 
   const handleInputChange = (userId, value) => {
     setUserInputs((prevInputs) => ({
@@ -94,7 +95,7 @@ const Make = () => {
       [userId]: value,
     }));
   };
-  // console.log(userInputs)
+  console.log(userInputs)
 
   const customStyleArray = [
     {
@@ -127,12 +128,12 @@ const Make = () => {
 
             if (trueSelectedUsers.length > 0) {
               const totalSelectedUsers = trueSelectedUsers.length;
-              const amountPerUser = (parseFloat(amount) / totalSelectedUsers).toFixed(2);
+              const amountPerUser = parseFloat(amount) / totalSelectedUsers;
 
               const transactionsPromises = users.map(async (user) => {
                 if (selectedUsers[user.id]) {
                   const payerId = selectedPayer.value;
-                  const transactionAmount = amountPerUser;
+                  const transactionAmount = parseFloat(amountPerUser.toFixed(2));
                   const receiverId = user.id;
                   const transactionData = {
                     lender: receiverId,
@@ -156,7 +157,7 @@ const Make = () => {
                     );
 
                     const data = await res.json();
-                    console.log(data.message);
+                    console.log(data);
 
                     // Check if the fetch was successful before setting the tab
                     if (res.ok) {
@@ -189,7 +190,9 @@ const Make = () => {
             const currentUserId = user.id;
 
             if (currentUserId !== activeUserId) {
-              const transactionAmount = parseFloat(userInputs[user.id]).toFixed(2);
+              const transactionAmount = parseFloat(parseFloat(userInputs[user.id]).toFixed(
+                2
+              ));
               const receiverId = user.id;
               const transactionData = {
                 lender: receiverId,
@@ -213,7 +216,7 @@ const Make = () => {
                 );
 
                 const data = await res.json();
-                console.log(data.message);
+                console.log(data);
 
                 // Check if the fetch was successful before setting the tab
                 if (res.ok) {
