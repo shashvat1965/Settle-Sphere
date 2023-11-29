@@ -6,6 +6,7 @@ import GlobalContext from "../context/GlobalContext";
 
 const SettleAccount = ({ id, name, amount, type, ownerId, pubKey }) => {
   const { setSelectedTab, setSettleAccount, settleAccount } = useContext(GlobalContext);
+  const fixedAmount = amount.toFixed(2)
   const handleRecord = () => {
     setSelectedTab("record");
     setSettleAccount([
@@ -30,7 +31,7 @@ const SettleAccount = ({ id, name, amount, type, ownerId, pubKey }) => {
           {type === 'receives' ? <span className="settle-type-receive">You are owed</span> : <span className="settle-type-owe">You Owe</span>}
         </div>
         <div className="settle-data">
-          <span>{amount}</span>
+          <span>{fixedAmount}</span>
           <img src={Solana} alt="" />
         </div>
       </div>
