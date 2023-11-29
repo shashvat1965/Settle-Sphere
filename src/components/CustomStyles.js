@@ -15,7 +15,7 @@ export default function CustomStyles() {
             ...provided,
             color: "#fff",
             fontFamily: "Open Sans",
-            fontSize: "1.5rem",
+            fontSize: "1.05rem",
           }),
       
         control: (provided, state) => ({
@@ -38,7 +38,7 @@ export default function CustomStyles() {
             color: state.isSelected ? "#fff" : "#fff",
             backgroundColor: state.isSelected ? "#8a2a9b" : "#222",
             fontFamily: "Open Sans",
-            fontSize: "1.25rem",
+            fontSize: "1rem",
             zIndex: 1002,
             "&:hover": {
               backgroundColor: "#8a2a9b",
@@ -79,7 +79,7 @@ export default function CustomStyles() {
           placeholder: (provided , state) => ({
             ...provided,
             fontFamily: "Open Sans",
-            fontSize: "1.25rem",
+            fontSize: "1rem",
             opacity: "1",
             color: "rgba(255, 255, 255, 0.6)",
             opacity: state.isFocused ? "0" : "1",
@@ -92,7 +92,7 @@ export default function CustomStyles() {
             ...provided,
             color: "#fff",
             fontFamily: "Open Sans",
-            fontSize: "1.25rem",
+            fontSize: "1rem",
             paddingLeft: "1rem",
             backgroundColor: "#222222",
             paddingTop: "0px",

@@ -7,7 +7,7 @@
   overflow-y: scroll;
 }
 .make-data {
-  margin-top: 2rem;
+  margin-top: .5rem;
   color: #fff;
   font-family: "Open Sans";
   font-size: 1.5rem;
@@ -18,41 +18,54 @@
 .make-profiles {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 2rem;
+  padding: 0 2rem;
 }
-.make-profiles img {
-  height: 125px;
-  width: 125px;
-  margin-bottom: 1rem;
+.profile-one img {
+  height: 110px;
+  width: 110px;
+  margin-bottom: .5rem;
 }
 .make-detail {
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
 }
 .profile-one,
 .profile-two {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 50%;
+  /* align-items: center; */
+  /* width: 40%; */
 }
 .make-profile-name{
   width: 100%;
   text-align: center;
 }
+.make-amount-section{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  /* gap: 2.5rem; */
+}
 .make-amount {
   display: flex;
-  margin-top: 1rem;
-  justify-content: center;
+  margin-top: 4rem;
+  justify-content: space-between;
   gap: 1rem;
 }
 .make-amount-currency {
   cursor: pointer;
 }
 .make-amount-number {
-  width: 20%;
+  /* margin-top: 1rem; */
+  width: 70%;
   appearance: none;
   -moz-appearance: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* gap: 3rem; */
 }
 .make-amount-number input[type="text"] {
   background-color: #0c0f17;
@@ -60,13 +73,13 @@
   text-align: center;
   padding: 0.5rem;
 }
-.make-note {
-  margin-top: 1rem;
-  display: flex;
-  justify-content: center;
+#amount::placeholder{
+  font-size: .65rem;
+}
+#amount{
+  width: 50%;
 }
 .make-note input[type="text"] {
-  width: 75%;
 
   background-color: #0c0f17;
   border-bottom: 1px solid #98d448;
@@ -99,3 +112,82 @@
   text-align: center;
   font-size: 1rem;
 }
+.make-split{
+  padding: 0 2rem;
+  margin-top: 1rem;
+}
+.make-record{
+  display: flex;
+  width: 20%;
+}
+.make-split-amount input[type="text"]{
+  background-color: #0c0f17;
+  border-bottom: 1px solid #98d448;
+  text-align: center;
+  padding: 0.5rem;
+  margin-left: .5rem;
+}
+.make-split-container{
+  margin-bottom: 2rem;
+}
+.make-split-header{
+  display: flex;
+  justify-content: space-between;
+}
+.custom-checkbox {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+}
+
+.custom-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkmark {
+  position: absolute;
+  top: -13px;
+  left: 10px;
+  height: 25px;
+  width: 25px;
+  background-color: #898989; 
+  border-radius: 4px; 
+}
+
+.custom-checkbox input:checked ~ .checkmark {
+  background-color: #8A2A9B; /* Checked background color */
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.custom-checkbox input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.custom-checkbox .checkmark:after {
+  left: 10px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+
+.make {
+  margin-top: 1rem;
+  /* Other styles for .make */
+}
+
+
+
